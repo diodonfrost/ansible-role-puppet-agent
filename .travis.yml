@@ -6,77 +6,77 @@ env:
   # CentOS
   - distribution: centos
     version: "7"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: centos
     version: "6"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
 
   # Fedora
   - distribution: fedora
     version: "28"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: fedora
     version: "27"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: fedora
     version: "26"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
 
   # Ubuntu
   - distribution: ubuntu
     version: "18.04"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: ubuntu
     version: "16.04"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: ubuntu
     version: "14.04"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: ubuntu
     version: "12.04"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
 
   # Debian
   - distribution: debian
     version: "9"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: debian
     version: "8"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: debian
     version: "7"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
 
   # Oraclelinux
   - distribution: oraclelinux
     version: "7"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: oraclelinux
     version: "6"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
 
   # Amazonlinux
   - distribution: amazonlinux
     version: "2"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
   - distribution: amazonlinux
     version: "1"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
 
   # Opensuse
   - distribution: opensuse
     version: "42.3"
-    repository: puppetlabs_repository
+    install_from: puppetlabs_repository
 
   # Archlinux
   - distribution: archlinux
     version: "rolling"
-    repository: os_repository
+    install_from: os_repository
 
   # Gentoo
   - distribution: gentoo
     version: "stage3"
-    repository: os_repository
+    install_from: os_repository
 
 before_install:
   # Build docker container
@@ -89,14 +89,14 @@ script:
   - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/roles/ansible-role-puppet:ro diodonfrost/${distribution}-${version}-ansible:latest > "${container_id}"'
 
   # Check syntax
-  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/test.yml --syntax-check'
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/test.yml --syntax-check --extra-vars "install_from=${repository}"'
 
   # Run ansible playbook
-  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/test.yml'
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/test.yml --extra-vars "install_from=${repository}"'
 
   # Test indempotence
   - >
-    sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/test.yml
+    sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/test.yml --extra-vars "install_from=${repository}"
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
