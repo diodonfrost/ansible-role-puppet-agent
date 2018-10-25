@@ -1,38 +1,131 @@
-Role Name
-=========
+# ansible-role-puppet
 
-A brief description of the role goes here.
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.puppet-660198.svg)](https://galaxy.ansible.com/diodonfrost/puppet)
+[![Build Status](https://travis-ci.org/diodonfrost/ansible-role-puppet.svg?branch=master)](https://travis-ci.org/diodonfrost/ansible-role-puppet)
 
-Requirements
-------------
+This role provide a compliance for puppet-agent and puppet-server on your target host.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+## Requirements
 
-Role Variables
---------------
+This role was developed using Ansible 2.4 Backwards compatibility is not guaranteed.
+Use `ansible-galaxy install diodonfrost.puppet` to install the role on your system.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Supported platforms:
 
-Dependencies
-------------
+```yaml
+- name: EL
+  versions:
+    - 5
+    - 6
+    - 7
+- name: Fedora
+  versions:
+    - 28
+    - 27
+    - 26
+- name: Debian
+  versions:
+    - stretch
+    - jessie
+    - wheezy
+    - squeeze
+- name: Ubuntu
+  versions:
+    - bionic
+    - artful
+    - xenial
+    - trusty
+    - precise
+- name: OracleLinux
+  versions:
+    - 7
+    - 6
+- name: Amazon
+  versions:
+    - all
+- name: opensuse
+  versions:
+    - all
+- name: ArchLinux
+  versions:
+    - any
+- name: Gentoo
+  versions:
+    - any
+- name: FreeBSD
+  versions:
+    - 11.0
+    - 10.4
+- name: OpenBSD
+  versions:
+    - 6.0
+```
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+## Role Variables
 
-Example Playbook
-----------------
+This role has multiple variables. The defaults for all these variables are the following:
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+```yaml
+---
+# defaults file for ansible-role-puppet
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+# Install puppet agent with puppetlabs repository
+# Default is true.
+puppet_agent_install: true
 
-License
--------
+# Install puppet server with puppetlabs repository
+# puppet-server is not supported on Windows
+# Default is false.
+# puppet-server is not supported on Windows and OpenBSD
+puppet_server_install: false
 
-BSD
+# Specify repository origin for Puppet.
+# Options are 'puppetlabs_repository' or 'os_repository'.
+# Default is puppetlabs_repository.
+# OS supported with puppetlabs_repository:
+# Redhat/CentOS 5,6,7
+# Debian 6,7,8,9
+# Ubuntu 18.04, 16.04, 15.04, 14.04, 12.04
+# Opensuse: 42
+# Windows NT: 6, 10
+# Windows support only puppetlabs_repository
+install_from: puppetlabs_repository
 
-Author Information
-------------------
+# Specifie puppet version to install
+# Default is 5
+puppet_version: 5
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+# Specifie if Puppetlabs repo source is enable
+# supported value are "present" and "absent"
+# Default is absent
+puppetlabs_repo_source: absent
+```
+
+## Dependencies
+
+None
+
+## Example Playbook
+
+This is a sample playbook file for deploying the Ansible Galaxy puppet role in a localhost and installing the open source version of puppet.
+
+```yaml
+---
+- hosts: localhost
+  become: true
+  roles:
+    - role: diodonfrost.puppet
+```
+
+
+## License
+
+Apache 2
+
+## Resources
+
+Puppetlabs repo install: [https://puppet.com/docs/puppet/5.3/puppet_platform.html](https://puppet.com/docs/puppet/5.3/puppet_platform.html)
+
+## Author Information
+
+This role was created in 2018 by diodonfrost.

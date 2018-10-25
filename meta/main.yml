@@ -1,7 +1,7 @@
 galaxy_info:
+  role_name: puppet
   author: diodonfrost
   description: Ansible role for manage Puppet
-  company: your company (optional)
 
   license: license Apache
 
@@ -23,6 +23,7 @@ galaxy_info:
         - stretch
         - jessie
         - wheezy
+        - squeeze
     - name: Ubuntu
       versions:
         - bionic
