@@ -1,2 +1,9 @@
 ---
 # tasks file for ansible-role-puppet
+
+- name: Include OS specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Install Puppet-agent
+  include_tasks: "repository/install-os.yml"
+  when: puppet_agent_install == true

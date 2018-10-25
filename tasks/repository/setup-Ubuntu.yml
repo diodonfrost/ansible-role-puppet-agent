@@ -1,0 +1,22 @@
+---
+# add Puppetlabs repository in Ubuntu
+
+- name: Add Puppetlabs apt key in Ubuntu
+  apt_key:
+    url: https://apt.puppetlabs.com/DEB-GPG-KEY-puppet
+    state: present
+
+- name: Add Puppetlabs repository for Ubuntu
+  apt_repository:
+    repo: deb http://apt.puppetlabs.com {{ ansible_distribution_release }} puppet{{ puppet_version }}
+    state: present
+
+- name: Add Puppetlabs source repository for Ubuntu
+  apt_repository:
+    repo: deb-src http://apt.puppetlabs.com {{ ansible_distribution_release }} puppet{{ puppet_version }}
+    state: absent
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  changed_when: false

@@ -1,0 +1,4 @@
+---
+# Puppet packages name
+puppet_agent_package: puppet
+puppet_server_package: puppet-server

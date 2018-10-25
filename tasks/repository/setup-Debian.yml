@@ -1,0 +1,22 @@
+---
+# add Puppetlabs repository in Debian
+
+- name: Add Puppetlabs apt key in Debian
+  apt_key:
+    url: https://apt.puppetlabs.com/DEB-GPG-KEY-puppet
+    state: present
+
+- name: Add Puppetlabs repository for Debian
+  apt_repository:
+    repo: deb http://apt.puppetlabs.com {{ ansible_distribution_release }} puppet{{ puppet_version }}
+    state: present
+
+- name: Add Puppetlabs source repository for Debian
+  apt_repository:
+    repo: deb-src http://apt.puppetlabs.com {{ ansible_distribution_release }} puppet{{ puppet_version }}
+    state: "{{ puppetlabs_repo_source }}"
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  changed_when: false

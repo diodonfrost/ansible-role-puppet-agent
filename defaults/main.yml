@@ -1,2 +1,33 @@
 ---
 # defaults file for ansible-role-puppet
+
+# Install puppet agent with puppetlabs repository
+# Default is true.
+puppet_agent_install: true
+
+# Install puppet server with puppetlabs repository
+# puppet-server is not supported on Windows
+# Default is false.
+# puppet-server is not supported on Windows and OpenBSD
+puppet_server_install: false
+
+# Specify repository origin for Puppet.
+# Options are 'puppetlabs_repository' or 'os_repository'.
+# Default is puppetlabs_repository.
+# OS supported with puppetlabs_repository:
+# Redhat/CentOS 5,6,7
+# Debian 6,7,8,9
+# Ubuntu 18.04, 16.04, 15.04, 14.04, 12.04
+# Opensuse: 42
+# Windows NT: 6, 10
+# Windows support only puppetlabs_repository
+install_from: puppetlabs_repository
+
+# Specifie puppet version to install
+# Default is 5
+puppet_version: 5
+
+# Specifie if Puppetlabs repo source is enable
+# supported value are "present" and "absent"
+# Default is absent
+puppetlabs_repo_source: absent

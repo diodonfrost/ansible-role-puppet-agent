@@ -1,0 +1,22 @@
+---
+# add Puppetlabs repository in Fedora
+
+- name: Add Puppetlabs repository for Fedora
+  yum_repository:
+    name: puppet{{ puppet_version }}
+    description: Puppet {{ puppet_version }} Repository fedora {{ ansible_distribution_major_version }} - $basearch
+    baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}/fedora/{{ ansible_distribution_major_version }}/$basearch
+    gpgcheck: true
+    gpgkey: https://yum.puppet.com/RPM-GPG-KEY-puppet
+    enabled: true
+    state: present
+
+- name: Add Puppetlabs source repository for Fedora
+  yum_repository:
+    name: puppet{{ puppet_version }}-source
+    description: Puppet {{ puppet_version }} Repository fedora {{ ansible_distribution_major_version }} - Source
+    baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/fedora/{{ ansible_distribution_major_version }}/SRPMS
+    gpgcheck: true
+    gpgkey: https://yum.puppet.com/RPM-GPG-KEY-puppet
+    enabled: true
+    state: "{{ puppetlabs_repo_source }}"

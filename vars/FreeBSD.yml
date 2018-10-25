@@ -1,0 +1,4 @@
+---
+# Puppet packages name
+puppet_agent_package: sysutils/puppet6
+puppet_server_package: sysutils/puppetserver6
