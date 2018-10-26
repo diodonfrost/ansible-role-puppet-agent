@@ -64,6 +64,11 @@
       changed_when: false
       when: ansible_os_family == "Debian"
 
+    - name: Update emerge cache
+      shell: emerge-webrsync
+      changed_when: false
+      when: ansible_os_family == "Gentoo"
+
     - name: Puppet-agent install from os repository
       package:
         name: "{{ puppet_agent_package }}"

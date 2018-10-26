@@ -21,7 +21,7 @@
 - name: Add Puppetlabs source repository for Ubuntu
   apt_repository:
     repo: deb-src http://apt.puppetlabs.com {{ ansible_distribution_release }} puppet{{ puppet_version }}
-    state: absent
+    state: "{{ puppetlabs_repo_source }}"
 
 - name: Update apt cache
   apt:

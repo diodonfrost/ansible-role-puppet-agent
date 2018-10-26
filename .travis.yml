@@ -12,8 +12,6 @@ env:
     repository: puppetlabs_repository
 
   # Fedora
-  - distribution: fedora
-    version: "28"
     repository: puppetlabs_repository
   - distribution: fedora
     version: "27"
@@ -31,9 +29,6 @@ env:
     repository: puppetlabs_repository
   - distribution: ubuntu
     version: "14.04"
-    repository: puppetlabs_repository
-  - distribution: ubuntu
-    version: "12.04"
     repository: puppetlabs_repository
 
   # Debian

@@ -29,7 +29,6 @@ platforms:
       platform: centos
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-        - touch /var/log/secure
   - name: centos-6-ansible
     driver:
       image: diodonfrost/centos-6-ansible
@@ -37,7 +36,6 @@ platforms:
       run_command: /sbin/init
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-        - touch /var/log/secure
 
   # Fedora
   - name: fedora-28-ansible
@@ -47,7 +45,6 @@ platforms:
       platform: centos
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-        - touch /var/log/secure
   - name: fedora-27-ansible
     driver:
       image: diodonfrost/fedora-27-ansible
@@ -55,7 +52,6 @@ platforms:
       platform: centos
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-        - touch /var/log/secure
   - name: fedora-26-ansible
     driver:
       image: diodonfrost/fedora-26-ansible
@@ -63,7 +59,6 @@ platforms:
       platform: centos
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-        - touch /var/log/secure
 
   # Ubuntu
   - name: ubuntu-18.04-ansible
@@ -71,27 +66,22 @@ platforms:
       provision_command: apt-get install -y init
       run_command: /sbin/init
       platform: ubuntu
-      provision_command:
-        - touch /var/log/auth.log
   - name: ubuntu-17.10-ansible
     driver:
       provision_command: apt-get install -y init
       run_command: /sbin/init
       platform: ubuntu
-      provision_command:
-        - touch /var/log/auth.log
   - name: ubuntu-16.04-ansible
     driver:
       provision_command: apt-get install -y init
       run_command: /sbin/init
       platform: ubuntu
-      provision_command:
-        - touch /var/log/auth.log
   - name: ubuntu-14.04-ansible
     driver:
       platform: ubuntu
-      provision_command:
-        - touch /var/log/auth.log
+  - name: ubuntu-12.04-ansible
+    driver:
+      platform: ubuntu
 
   # Debian
   - name: debian-9-ansible
@@ -99,20 +89,14 @@ platforms:
       provision_command: apt-get install -y systemd
       run_command: /bin/systemd
       platform: debian
-      provision_command:
-        - touch /var/log/auth.log
   - name: debian-8-ansible
     driver:
       run_command: /sbin/init
       platform: debian
-      provision_command:
-        - touch /var/log/auth.log
   - name: debian-7-ansible
     driver:
       image: diodonfrost/debian-7-ansible
       platform: debian
-      provision_command:
-        - touch /var/log/auth.log
 
   # Oraclelinux
   - name: oraclelinux-7-ansible

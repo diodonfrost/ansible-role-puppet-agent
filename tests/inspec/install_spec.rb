@@ -1,6 +1,8 @@
 # Puppet install
 
 puppet_package = 'puppet-agent'
+puppet_package = 'puppet' if os.name =='arch'
+puppet_package = 'app-admin/puppet' if os.name == 'gentoo'
 
 control 'install-01' do
   impact 1.0

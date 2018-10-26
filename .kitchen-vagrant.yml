@@ -74,4 +74,21 @@ suites:
   - name: default
     provisioner:
       name: ansible_playbook
-playbook: tests/test.yml
+      playbook: tests/test.yml
+      excludes:
+        - freebsd-11
+        - freebsd-10.4
+        - gentoo
+        - openbsd-6
+
+  - name: os-packaging
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/test.yml
+      extra_vars:
+        install_from: os_repository
+    includes:
+      - freebsd-11
+      - freebsd-10.4
+      - gentoo
+      - openbsd-6
