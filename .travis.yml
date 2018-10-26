@@ -68,11 +68,6 @@ env:
     version: "rolling"
     repository: os_repository
 
-  # Gentoo
-  - distribution: gentoo
-    version: "stage3"
-    repository: os_repository
-
 before_install:
   # Build docker container
   - 'sudo docker pull diodonfrost/${distribution}-${version}-ansible:latest'

@@ -75,11 +75,12 @@ suites:
     provisioner:
       name: ansible_playbook
       playbook: tests/test.yml
-      excludes:
-        - freebsd-11
-        - freebsd-10.4
-        - gentoo
-        - openbsd-6
+    excludes:
+      - archlinux-rolling
+      - freebsd-11
+      - freebsd-10.4
+      - gentoo
+      - openbsd-6
 
   - name: os-packaging
     provisioner:
@@ -88,6 +89,7 @@ suites:
       extra_vars:
         install_from: os_repository
     includes:
+      - archlinux-rolling
       - freebsd-11
       - freebsd-10.4
       - gentoo
