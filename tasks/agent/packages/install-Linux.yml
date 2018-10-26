@@ -1,0 +1,31 @@
+---
+# tasks file for install puppet-agent on Linux
+
+- name: Update apt cache on Debian Family os
+  apt:
+    update_cache: yes
+  changed_when: false
+  when: ansible_os_family == "Debian"
+
+- name: Update emerge cache on Gentoo
+  shell: emerge-webrsync
+  changed_when: false
+  when: ansible_os_family == "Gentoo"
+
+- name: Install puppet-agent from Puppetlabs repository
+  package:
+    name: puppet-agent
+    state: present
+  when: install_from == "puppetlabs_repository"
+
+- name: Install puppet-agent from os repository
+  package:
+    name: "{{ puppet_agent_package }}"
+    state: present
+  when: install_from == "os_repository"
+
+- name: Puppet-agent service
+  service:
+    name: "{{ puppet_agent_service }}"
+    state: started
+    enabled: yes

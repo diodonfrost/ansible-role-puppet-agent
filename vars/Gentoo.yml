@@ -1,4 +1,5 @@
 ---
 # Puppet packages name
-puppet_agent_package: app-admin/puppet
-puppet_server_package: app-admin/puppet
+puppet_agent_package: app-admin/puppet-agent
+puppet_server_package: app-admin/puppet-agent
+puppet_agent_service: puppet

@@ -35,24 +35,6 @@
       import_tasks: setup-Ubuntu.yml
       when: ansible_distribution  == "Ubuntu"
 
-    - name: Install puppet-agent from Puppetlabs reposiroty
-      package:
-        name: puppet-agent
-        state: present
-      when: ansible_system == "Linux"
-
-    - name: Install puppet-agent from Puppetlabs reposiroty on Windows
-      win_package:
-        path: http://downloads.puppetlabs.com/windows/puppet5/puppet-agent-x64-latest.msi
-        state: present
-      when: ansible_system == "Windows"
-
-    - name: Install puppet-server from Puppetlabs reposiroty
-      package:
-        name: puppet-server
-        state: present
-      when: puppet_server_install == true
-
   when: install_from == "puppetlabs_repository"
 
 - name: "(Install: Centos/Debian/Fedora/Opensuse/RedHat/Ubuntu/bsd) Install Puppet with os repository"

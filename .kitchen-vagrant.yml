@@ -69,6 +69,10 @@ platforms:
       vagrantfiles:
         - tests/vagrant/vagrant_openbsd_target.rb
 
+  - name: macosx-10.9
+    driver:
+      box: macosx-10.9
+
 # Define playbook
 suites:
   - name: default

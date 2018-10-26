@@ -1,6 +1,10 @@
 ---
 # defaults file for ansible-role-puppet
 
+# Install Puppetlabs repository
+# Default is true
+puppetlabs_repository: true
+
 # Install puppet agent with puppetlabs repository
 # Default is true.
 puppet_agent_install: true

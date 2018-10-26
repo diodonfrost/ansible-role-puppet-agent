@@ -2,3 +2,4 @@
 # Puppet packages name
 puppet_agent_package: puppet-5.4.0
 puppet_server_package: undef
+puppet_agent_service: puppet

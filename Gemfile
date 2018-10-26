@@ -6,3 +6,4 @@ gem "kitchen-docker"
 gem "kitchen-inspec"
 gem "kitchen-vagrant"
 gem "kitchen-sync"
+gem 'winrm-transport'
