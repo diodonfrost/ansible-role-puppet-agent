@@ -4,7 +4,7 @@
   block:
 
     - name: Puppetlabs Amazonlinux repos
-      import_tasks: setup-CentOS.yml
+      import_tasks: setup-Amazon.yml
       when: ansible_distribution  == "Amazon"
 
     - name: Puppetlabs CentOS repos

@@ -13,6 +13,7 @@
     repo: http://yum.puppetlabs.com/puppet{{ puppet_version }}/sles/12/$basearch
     auto_import_keys: yes
     state: present
+  changed_when: false
 
 - name: Add Puppetlabs source repository for OpenSuse
   zypper_repository:
@@ -21,3 +22,4 @@
     repo: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/sles/12/SRPMS
     auto_import_keys: yes
     state: "{{ puppetlabs_repo_source }}"
+  changed_when: false
