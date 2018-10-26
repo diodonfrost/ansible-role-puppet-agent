@@ -19,7 +19,7 @@ control 'install-02' do
   impact 1.0
   title 'Puppet-agent service'
   desc 'Puppet-agent  service should be running and enabled'
-  describe package(puppet_service) do
+  describe service(puppet_service) do
     it { should be_enabled }
     it { should be_running }
   end
