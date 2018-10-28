@@ -117,6 +117,51 @@ This is a sample playbook file for deploying the Ansible Galaxy puppet role in a
     - role: diodonfrost.puppet
 ```
 
+## Local Testing
+
+The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system.
+
+You can also use vagrant and Virtualbox with vagrant to run tests locally. You will have to install Virtualbox and Vagrant on your system. For all our tests we use test-kitchen.
+
+Next install test-kitchen:
+
+```shell
+# Install dependencies
+gem install bundler
+bundle install
+```
+
+### Testing with Docker
+
+```shell
+# List all tests with kitchen
+kitchen list
+
+# fast test on one machine
+kitchen test mariadb-103-centos-7
+
+# test on all machines
+kitchen test
+
+# for development, create environment
+kitchen create default-centos-7
+
+# Apply ansible playbook
+kitchen converge default-centos-7
+
+# Apply inspec tests
+kitchen verify default-centos-7
+```
+
+### Testing with Virtualbox
+
+```shell
+# Specify kitchen file on Linux
+export KITCHEN_YAML=.kitchen-vagrant.yml
+
+# fast test on one machine
+kitchen test os-packaging-freebsd-11
+```
 
 ## License
 
