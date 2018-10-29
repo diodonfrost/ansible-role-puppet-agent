@@ -5,3 +5,9 @@
   package:
     name: "{{ puppet_agent_package }}"
     state: present
+
+- name: Puppet-agent service on OpenBSD
+  service:
+    name: "{{ puppet_agent_service }}"
+    state: started
+    enabled: yes

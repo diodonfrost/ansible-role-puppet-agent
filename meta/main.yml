@@ -43,10 +43,7 @@ galaxy_info:
         - 6.0
     - name: Windows
       versions:
-        - 2016
         - 2012R2
-        - 2008R2
-
 
   galaxy_tags:
     - system

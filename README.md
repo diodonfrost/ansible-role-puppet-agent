@@ -59,7 +59,9 @@ Supported platforms:
 - name: OpenBSD
   versions:
     - 6.0
-```
+- name: Windows
+  versions:
+    - 2012R2
 
 ## Role Variables
 
@@ -161,6 +163,31 @@ export KITCHEN_YAML=.kitchen-vagrant.yml
 
 # fast test on one machine
 kitchen test os-packaging-freebsd-11
+```
+
+### Testing Windows with Virtualbox
+
+Windows can only be test with Virtualbox provider,do not use 'kitchen test' command for testing Windows environment. There 4 major commands you will be using with test-kitchen as part of your workflow.
+
+First of all we must set the kitchen file:
+```shell
+export KITCHEN_YAML=.kitchen-windows.yml
+```
+
+Provision the virtual machines, a Linux machine to run Ansible and Windows machines to apply playbook again:
+```shell
+# deploy machines
+kitchen create
+```
+
+Finaly launch inspec tests:
+```shell
+kitchen verify
+```
+
+For cleaning environment use:
+```shell
+kitchen destroy
 ```
 
 ## License

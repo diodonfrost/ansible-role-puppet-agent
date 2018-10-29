@@ -3,6 +3,7 @@
 puppet_package = 'puppet-agent'
 puppet_package = 'puppet' if os.name =='arch'
 puppet_package = 'app-admin/puppet' if os.name == 'gentoo'
+puppet_package = 'Puppet Agent (64-bit)' if os.family == 'windows'
 
 puppet_service = 'puppet'
 
