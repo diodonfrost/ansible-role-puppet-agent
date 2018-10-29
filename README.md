@@ -15,9 +15,9 @@ Supported platforms:
 ```yaml
 - name: EL
   versions:
-    - 5
-    - 6
     - 7
+    - 6
+    - 5
 - name: Fedora
   versions:
     - 28
@@ -32,7 +32,6 @@ Supported platforms:
 - name: Ubuntu
   versions:
     - bionic
-    - artful
     - xenial
     - trusty
     - precise
@@ -40,29 +39,23 @@ Supported platforms:
   versions:
     - 7
     - 6
-- name: Amazon
-  versions:
-    - all
-- name: opensuse
-  versions:
-    - all
-- name: ArchLinux
-  versions:
-    - any
-- name: Gentoo
-  versions:
-    - any
 - name: FreeBSD
   versions:
-    - 11.0
-    - 10.4
+    - 11.2
+    - 10.3
 - name: OpenBSD
   versions:
     - 6.0
 - name: Windows
   versions:
     - 2012R2
-
+- name: osx
+  versions:
+    - 10.10
+    - 10.11
+    - 10.12
+    - 10.13
+```
 ## Role Variables
 
 This role has multiple variables. The defaults for all these variables are the following:

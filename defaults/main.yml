@@ -24,7 +24,8 @@ puppet_server_install: false
 # Ubuntu 18.04, 16.04, 15.04, 14.04, 12.04
 # Opensuse: 42
 # Windows NT: 6, 10
-# Windows support only puppetlabs_repository
+# osx: 10.10, 10.11, 10.12, 10.13
+# Windows and Mac support only puppetlabs_repository
 install_from: puppetlabs_repository
 
 # Specifie puppet version to install

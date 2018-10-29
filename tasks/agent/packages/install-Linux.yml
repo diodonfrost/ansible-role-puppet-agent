@@ -12,19 +12,19 @@
   changed_when: false
   when: ansible_os_family == "Gentoo"
 
-- name: Install puppet-agent from Puppetlabs repository
+- name: Install puppet-agent from Puppetlabs repository on Linux
   package:
     name: puppet-agent
     state: present
   when: install_from == "puppetlabs_repository"
 
-- name: Install puppet-agent from os repository
+- name: Install puppet-agent from os repository on Linux
   package:
     name: "{{ puppet_agent_package }}"
     state: present
   when: install_from == "os_repository"
 
-- name: Puppet-agent service
+- name: Puppet-agent service on Linux
   service:
     name: "{{ puppet_agent_service }}"
     state: started

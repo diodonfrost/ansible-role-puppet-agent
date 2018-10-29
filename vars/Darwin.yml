@@ -1,0 +1,5 @@
+---
+# Puppet packages name
+puppet_agent_package: undef
+puppet_server_package: undef
+puppet_agent_service: com.puppetlabs.puppet

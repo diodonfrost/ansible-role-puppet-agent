@@ -1,2 +1,43 @@
 ---
 # Install puppet-agent on osx
+
+- name: Check if puppet is installed
+  stat:
+    path: /opt/puppetlabs/bin/puppet
+  register: puppet_package
+
+- name: Install and manage puppet-agent
+  block:
+
+    - name: Temporary directory
+      file:
+        path: ./tmp
+        state: directory
+
+    - name: Download puppet-agent package
+      get_url:
+        url: https://downloads.puppetlabs.com/mac/{{ ansible_distribution_major_version }}.{{ ansible_distribution_version.split('.')[-2] }}/PC1/x86_64/puppet-agent-latest.dmg
+        dest: ./tmp/puppet-agent-latest.dmg
+
+    # Don't know why it goes into error but it still works
+    - name: Mount dmg
+      shell: hdiutil attach ./tmp/puppet-agent-latest.dmg -nobrowse -mountpoint ./tmp/puppet-agent-latest
+      ignore_errors: yes
+
+    - name: Install puppet-agent
+      shell: installer -pkg ./tmp/puppet-agent-latest/puppet-agent-*.pkg -target /
+
+    - name: Unmount and remove temporary directory
+      shell: hdiutil detach ./tmp/puppet-agent-latest/ && rm -R ./tmp/
+
+  when: puppet_package.stat.exists == False
+
+- name: Check if puppet service is running
+  shell: launchctl list | grep puppet
+  register: puppet_service
+  changed_when: false
+  ignore_errors: yes
+
+- name: Puppet-agent service on osx
+  shell: launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppet.plist
+  when: puppet_service.rc != 0
