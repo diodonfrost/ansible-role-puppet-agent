@@ -20,6 +20,7 @@ verifier:
 
 # Build platforms
 platforms:
+  # Standard Linux
   - name: centos-7
   - name: centos-6
   - name: fedora-28
@@ -38,18 +39,24 @@ platforms:
   - name: oraclelinux-6
     driver:
       box: bento/oracle-6
+
+  # Archlinux
   - name: archlinux-rolling
     driver:
       box: archlinux/archlinux
       provision: true
       vagrantfiles:
         - tests/vagrant/vagrant_archlinux_target.rb
+
+  # Gentoo
   - name: gentoo
     driver:
       box: generic/gentoo
       provision: true
       vagrantfiles:
         - tests/vagrant/vagrant_gentoo_target.rb
+
+  # FreeBSD
   - name: freebsd-11
     driver:
       box: bento/freebsd-11
@@ -62,6 +69,8 @@ platforms:
       provision: true
       vagrantfiles:
         - tests/vagrant/vagrant_freebsd_target.rb
+
+  # OpenBSD
   - name: openbsd-6
     driver:
       box: generic/openbsd6
@@ -69,9 +78,23 @@ platforms:
       vagrantfiles:
         - tests/vagrant/vagrant_openbsd_target.rb
 
-  - name: macosx-10.9
+  # Mac osx
+  - name: macosx-10.13
     driver:
-      box: macosx-10.9
+      box: jhcook/osx-elcapitan-10.13
+      provision: true
+  - name: macosx-10.12
+    driver:
+      box: jhcook/osx-elcapitan-10.12
+      provision: true
+  - name: macosx-10.11
+    driver:
+      box: jhcook/osx-elcapitan-10.11
+      provision: true
+  - name: macosx-10.10
+    driver:
+      box: jhcook/osx-elcapitan-10.10
+      provision: true
 
 # Define playbook
 suites:
