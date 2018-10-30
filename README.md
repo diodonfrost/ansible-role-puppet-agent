@@ -39,6 +39,14 @@ Supported platforms:
   versions:
     - 7
     - 6
+- name: opensuse
+  versions:
+    - 12.1
+    - 12.2
+    - 12.3
+- name: SLES
+  versions:
+    - 12
 - name: ArchLinux
   versions:
     - any
