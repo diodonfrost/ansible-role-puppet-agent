@@ -39,6 +39,12 @@ Supported platforms:
   versions:
     - 7
     - 6
+- name: ArchLinux
+  versions:
+    - any
+- name: Gentoo
+  versions:
+    - stage3
 - name: FreeBSD
   versions:
     - 11.2
@@ -49,7 +55,7 @@ Supported platforms:
 - name: Windows
   versions:
     - 2012R2
-- name: osx
+- name: MacOSX
   versions:
     - 10.10
     - 10.11
