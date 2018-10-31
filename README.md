@@ -78,9 +78,44 @@ This role has multiple variables. The defaults for all these variables are the f
 ---
 # defaults file for ansible-role-puppet
 
+# Install Puppetlabs repository
+# Default is true
+puppetlabs_repository: true
+
 # Install puppet agent with puppetlabs repository
 # Default is true.
 puppet_agent_install: true
+
+# Setting up puppet_agent
+# Default is true
+puppet_agent_configuration: true
+
+
+################################
+#
+# Puppet-agent configuration
+#
+################################
+
+# The master server to request configurations from.
+# Defaults to puppet
+puppet_agent_server: puppet
+
+# The environment to request when contacting the master.
+# Default is production
+puppet_agent_environment: production
+
+# How often to do a Puppet run, when running as a service.
+# Default is 30m
+puppet_agent_runinterval: 30m
+
+# Add advanced Puppet settings.
+# Example:
+# puppet_agent_custom_options:
+#   - noop = enabled
+#   - report = true
+#   - daemonize = false
+puppet_agent_custom_options: []
 
 # Install puppet server with puppetlabs repository
 # puppet-server is not supported on Windows
@@ -97,15 +132,17 @@ puppet_server_install: false
 # Ubuntu 18.04, 16.04, 15.04, 14.04, 12.04
 # Opensuse: 42
 # Windows NT: 6, 10
-# Windows support only puppetlabs_repository
+# osx: 10.10, 10.11, 10.12, 10.13
+# Windows and Mac osx support only puppetlabs_repository
 install_from: puppetlabs_repository
 
 # Specifie puppet version to install
+# Supported values are "5" and "6"
 # Default is 5
 puppet_version: 5
 
 # Specifie if Puppetlabs repo source is enable
-# supported value are "present" and "absent"
+# Supported values are "present" and "absent"
 # Default is absent
 puppetlabs_repo_source: absent
 ```

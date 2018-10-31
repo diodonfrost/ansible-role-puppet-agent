@@ -79,20 +79,6 @@ platforms:
         - tests/vagrant/vagrant_openbsd_target.rb
 
   # Mac osx
-  - name: macosx-10.13
-    driver:
-      box: jhcook/osx-elcapitan-10.13
-      provision: true
-    provisioner:
-      name: ansible_playbook
-      ansible_binary_path: /usr/local/bin/
-  - name: macosx-10.12
-    driver:
-      box: jhcook/osx-elcapitan-10.12
-      provision: true
-    provisioner:
-      name: ansible_playbook
-      ansible_binary_path: /usr/local/bin/
   - name: macosx-10.11
     driver:
       box: jhcook/osx-elcapitan-10.11
@@ -107,6 +93,7 @@ platforms:
     provisioner:
       name: ansible_playbook
       ansible_binary_path: /usr/local/bin/
+
 # Define playbook
 suites:
   - name: default

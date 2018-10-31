@@ -9,5 +9,5 @@
   when: puppetlabs_repository == true
 
 - name: Install puppet-agent
-  include_tasks: "agent/install-agent.yml"
+  include_tasks: "agent/agent.yml"
   when: puppet_agent_install == true

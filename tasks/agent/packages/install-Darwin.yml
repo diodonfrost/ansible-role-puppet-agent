@@ -39,5 +39,5 @@
   ignore_errors: yes
 
 - name: Puppet-agent service on osx
-  shell: launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppet.plist
+  shell: "launchctl load -w {{ puppet_agent_service }}"
   when: puppet_service.rc != 0

@@ -1,0 +1,16 @@
+#####################################
+##                                 ##
+## THIS FILE IS MANAGED BY ANSIBLE ##
+##                                 ##
+#####################################
+
+[main]
+server = {{ puppet_agent_server }}
+environment = {{ puppet_agent_environment }}
+runinterval = {{ puppet_agent_runinterval }}
+
+{% if ansible_system == "Win32NT" -%}
+manage_internal_file_permissions = false
+{% endif %}
+
+{{ puppet_agent_custom_options }}

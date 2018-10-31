@@ -1,2 +1,27 @@
 ---
 # handlers file for ansible-role-puppet
+
+- name: puppet-agent restart Linux
+  service:
+    name: "{{ puppet_agent_service }}"
+    state: restarted
+
+- name: puppet-agent restart Darwin
+  shell: |
+    launchctl unload "{{ puppet_agent_service }}"
+    launchctl load "{{ puppet_agent_service }}"
+
+- name: puppet-agent restart FreeBSD
+  service:
+    name: "{{ puppet_agent_service }}"
+    state: restarted
+
+- name: puppet-agent restart OpenBSD
+  service:
+    name: "{{ puppet_agent_service }}"
+    state: restarted
+
+- name: puppet-agent restart Win32NT
+  win_service:
+    name: "{{ puppet_agent_service }}"
+    state: restarted

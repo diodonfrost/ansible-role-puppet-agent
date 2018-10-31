@@ -38,13 +38,6 @@ platforms:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
   # Fedora
-  - name: fedora-28-ansible
-    driver:
-      image: diodonfrost/fedora-28-ansible
-      run_command: /usr/sbin/init
-      platform: centos
-      provision_command:
-        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
   - name: fedora-27-ansible
     driver:
       image: diodonfrost/fedora-27-ansible
@@ -126,15 +119,6 @@ platforms:
       image: diodonfrost/amazonlinux-1-ansible
       run_command: /sbin/init
       platform: centos
-
-  # Opensuse
-  - name: opensuse-42.3-ansible
-    driver:
-      image: diodonfrost/opensuse-42.3-ansible
-      run_command: /usr/lib/systemd/systemd
-      platform: opensuse
-      provision_command:
-        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
   # Gentoo
   - name: gentoo-stage3-ansible

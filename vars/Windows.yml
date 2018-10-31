@@ -3,3 +3,6 @@
 puppet_agent_package: undef
 puppet_server_package: undef
 puppet_agent_service: puppet
+puppet_agent_configfile: C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
+puppet_agent_configfile_owner: undef
+puppet_agent_configfile_group: undef
