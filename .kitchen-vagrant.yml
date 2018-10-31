@@ -96,10 +96,26 @@ platforms:
 
 # Define playbook
 suites:
-  - name: default
+  - name: os-repository
     provisioner:
       name: ansible_playbook
       playbook: tests/test.yml
+      extra_vars:
+        install_from: os_repository
+    includes:
+      - archlinux-rolling
+      - freebsd-11
+      - freebsd-10.4
+      - gentoo
+      - openbsd-6
+
+  - name: puppetlabs-repository
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/test.yml
+      extra_vars:
+        install_from: puppetlabs_repository
+        puppet_version: 5
     excludes:
       - archlinux-rolling
       - freebsd-11
@@ -107,13 +123,14 @@ suites:
       - gentoo
       - openbsd-6
 
-  - name: os-packaging
+  - name: puppet-6
     provisioner:
       name: ansible_playbook
       playbook: tests/test.yml
       extra_vars:
-        install_from: os_repository
-    includes:
+        install_from: puppetlabs_repository
+        puppet_version: 6
+    excludes:
       - archlinux-rolling
       - freebsd-11
       - freebsd-10.4
