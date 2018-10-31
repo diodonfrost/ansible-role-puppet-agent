@@ -4,7 +4,6 @@ puppet_package = 'puppet-agent'
 puppet_package = 'puppet' if os.name =='arch'
 puppet_package = 'app-admin/puppet' if os.name == 'gentoo'
 puppet_package = 'Puppet Agent (64-bit)' if os.family == 'windows'
-puppet_package = 'com.puppetlabs.puppet-agent' if os.name =='mac_os_x'
 
 puppet_service = 'puppet'
 
@@ -12,8 +11,14 @@ control 'install-01' do
   impact 1.0
   title 'Puppet-agent package'
   desc 'Puppet-agent should be installed'
-  describe package(puppet_package) do
-    it { should be_installed }
+  if os.name != 'mac_os_x'
+    describe package(puppet_package) do
+      it { should be_installed }
+    end
+  else
+    describe file('/opt/puppetlabs/bin/puppet') do
+      it { should be_present }
+    end
   end
 end
 

@@ -138,6 +138,7 @@ install_from: puppetlabs_repository
 
 # Specifie puppet version to install
 # Supported values are "5" and "6"
+# Only recent Linux distribution support Puppet 6
 # Default is 5
 puppet_version: 5
 
