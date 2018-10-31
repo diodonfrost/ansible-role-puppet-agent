@@ -9,6 +9,7 @@ driver:
 provisioner:
   name: ansible_playbook
   hosts: localhost
+  playbook: tests/test.yml
   require_chef_for_busser: false
   require_ruby_for_busser: false
   require_ansible_omnibus: false
@@ -117,14 +118,12 @@ suites:
   - name: puppet-5
     provisioner:
       name: ansible_playbook
-      playbook: tests/test.yml
       extra_vars:
         puppet_version: 5
 
   - name: puppet-6
     provisioner:
       name: ansible_playbook
-      playbook: tests/test.yml
       extra_vars:
         puppet_version: 6
       exclude:
