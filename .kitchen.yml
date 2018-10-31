@@ -59,20 +59,12 @@ platforms:
       provision_command: apt-get install -y init
       run_command: /sbin/init
       platform: ubuntu
-  - name: ubuntu-17.10-ansible
-    driver:
-      provision_command: apt-get install -y init
-      run_command: /sbin/init
-      platform: ubuntu
   - name: ubuntu-16.04-ansible
     driver:
       provision_command: apt-get install -y init
       run_command: /sbin/init
       platform: ubuntu
   - name: ubuntu-14.04-ansible
-    driver:
-      platform: ubuntu
-  - name: ubuntu-12.04-ansible
     driver:
       platform: ubuntu
 
@@ -120,19 +112,21 @@ platforms:
       run_command: /sbin/init
       platform: centos
 
-  # Gentoo
-  - name: gentoo-stage3-ansible
-    driver:
-      image: diodonfrost/gentoo-stage3-ansible
-      run_command: /usr/lib/systemd/systemd
-      platform: gentoo
-      provision_command:
-        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-        - systemctl enable sshd
-
 # Define playbook
 suites:
-  - name: default
+  - name: puppet-5
     provisioner:
       name: ansible_playbook
       playbook: tests/test.yml
+      extra_vars:
+        puppet_version: 5
+
+  - name: puppet-6
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/test.yml
+      extra_vars:
+        puppet_version: 6
+      exclude:
+        - fedora-26-ansible
+        - debian-7-ansible
