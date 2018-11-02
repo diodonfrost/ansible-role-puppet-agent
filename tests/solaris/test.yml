@@ -1,0 +1,6 @@
+---
+- name: ansible-role-puppet
+  hosts: solaris-machines
+  become: yes
+  roles:
+    - ansible-role-puppet

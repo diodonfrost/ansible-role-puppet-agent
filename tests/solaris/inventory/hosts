@@ -1,0 +1,2 @@
+[solaris-machines]
+172.28.128.11 ansible_user=vagrant ansible_password=v@grant
