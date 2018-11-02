@@ -60,6 +60,9 @@ Supported platforms:
 - name: OpenBSD
   versions:
     - 6.0
+- name: Solaris
+  versions:
+    - 11.0
 - name: Windows
   versions:
     - 2012R2

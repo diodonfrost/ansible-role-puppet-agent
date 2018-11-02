@@ -108,6 +108,8 @@ suites:
       - freebsd-10.4
       - gentoo
       - openbsd-6
+      - solaris-10
+      - solaris-11
 
   - name: puppetlabs-repository
     provisioner:

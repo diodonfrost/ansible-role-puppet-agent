@@ -21,6 +21,11 @@
     name: "{{ puppet_agent_service }}"
     state: restarted
 
+- name: puppet-agent restart SunOS
+  service:
+    name: "{{ puppet_agent_service }}"
+    state: restarted
+
 - name: puppet-agent restart Win32NT
   win_service:
     name: "{{ puppet_agent_service }}"

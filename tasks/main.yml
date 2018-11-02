@@ -6,7 +6,7 @@
 
 - name: Install Puppetlabs repository
   include_tasks: "repository/install-repository.yml"
-  when: puppetlabs_repository == true
+  when: install_from == "puppetlabs_repository"
 
 - name: Install puppet-agent
   include_tasks: "agent/agent.yml"
