@@ -213,13 +213,17 @@ export KITCHEN_YAML=.kitchen-vagrant.yml
 kitchen test os-packaging-freebsd-11
 ```
 
-### Testing Windows with Virtualbox
+### Testing Windows or Solaris with Virtualbox
 
 Windows can only be test with Virtualbox provider,do not use 'kitchen test' command for testing Windows environment. There 4 major commands you will be using with test-kitchen as part of your workflow.
 
 First of all we must set the kitchen file:
 ```shell
+# For testing Windows
 export KITCHEN_YAML=.kitchen-windows.yml
+
+# For testing Solaris
+export KITCHEN_YAML=.kitchen-solaris.yml
 ```
 
 Provision the virtual machines, a Linux machine to run Ansible and Windows machines to apply playbook again:
