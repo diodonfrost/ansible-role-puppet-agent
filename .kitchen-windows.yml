@@ -28,7 +28,7 @@ platforms:
       name: shell
       command: echo 'Skipping Verify'
 
-  # Target Windows to test
+  # Target Windows 2012 R2 to test
   - name: windows-2012R2
     driver:
       box: opentable/win-2012r2-standard-amd64-nocm

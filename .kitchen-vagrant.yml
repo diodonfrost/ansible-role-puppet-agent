@@ -97,6 +97,7 @@ platforms:
 
 # Define playbook
 suites:
+  # Test with os repository
   - name: os-repository
     provisioner:
       name: ansible_playbook
@@ -111,6 +112,7 @@ suites:
       - solaris-10
       - solaris-11
 
+  # Test with puppetlabs repository and puppet 5
   - name: puppetlabs-repository
     provisioner:
       name: ansible_playbook
@@ -124,6 +126,7 @@ suites:
       - gentoo
       - openbsd-6
 
+  # Test with puppetlabs repository and puppet 6
   - name: puppet-6
     provisioner:
       name: ansible_playbook

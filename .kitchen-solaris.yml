@@ -27,6 +27,7 @@ platforms:
       name: shell
       command: echo 'Skipping Verify'
 
+  # Test on Solaris 11
   - name: solaris-11
     driver:
       box: jonatasbaldin/solaris11
