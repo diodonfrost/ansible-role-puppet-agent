@@ -7,7 +7,6 @@ driver:
 provisioner:
   name: ansible_playbook
   hosts: localhost
-  playbook: tests/test.yml
   require_chef_for_busser: false
   require_ruby_for_busser: false
   require_ansible_omnibus: false
@@ -95,14 +94,16 @@ platforms:
       name: ansible_playbook
       ansible_binary_path: /usr/local/bin/
 
-# Define playbook
 suites:
-  # Test with os repository
+  # Test puppet-agent install with os repository
   - name: os-repository
     provisioner:
       name: ansible_playbook
-      extra_vars:
-        install_from: os_repository
+      playbook: tests/playbooks/puppet-agent-os-repository.yml
+    verifier:
+      name: inspec
+      inspec_tests:
+        - path: tests/inspec/puppet_agent_spec.rb
     includes:
       - archlinux-rolling
       - freebsd-11
@@ -113,12 +114,14 @@ suites:
       - solaris-11
 
   # Test with puppetlabs repository and puppet 5
-  - name: puppetlabs-repository
+  - name: puppetlabs-agent-5
     provisioner:
       name: ansible_playbook
-      extra_vars:
-        install_from: puppetlabs_repository
-        puppet_version: 5
+      playbook: tests/playbooks/puppet-agent-5.yml
+    verifier:
+      name: inspec
+      inspec_tests:
+        - path: tests/inspec/puppet_agent_spec.rb
     excludes:
       - archlinux-rolling
       - freebsd-11
@@ -127,12 +130,14 @@ suites:
       - openbsd-6
 
   # Test with puppetlabs repository and puppet 6
-  - name: puppet-6
+  - name: puppet-agent-6
     provisioner:
       name: ansible_playbook
-      extra_vars:
-        install_from: puppetlabs_repository
-        puppet_version: 6
+      playbook: tests/playbooks/puppet-agent-6.yml
+    verifier:
+      name: inspec
+      inspec_tests:
+        - path: tests/inspec/puppet_agent_spec.rb
     excludes:
       - archlinux-rolling
       - freebsd-11
