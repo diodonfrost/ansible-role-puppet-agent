@@ -3,138 +3,162 @@ services:
   - docker
 
 env:
-  # CentOS
+#-----------------------------------------------
+#
+# CentOS
+#
+#-----------------------------------------------
+  # puppet-agent
   - distribution: centos
     version: "7"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: centos
     version: "6"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: centos
     version: "7"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
   - distribution: centos
     version: "6"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
 
-
-  # Fedora
+#--------------------------------
+#
+# Fedora
+#
+#--------------------------------
+  # puppet-agent
   - distribution: fedora
     version: "27"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: fedora
     version: "26"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: fedora
     version: "27"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
 
-  # Ubuntu
+
+#--------------------------------
+#
+# Ubuntu
+#
+#--------------------------------
+  # puppet-agent
   - distribution: ubuntu
     version: "18.04"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: ubuntu
     version: "16.04"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: ubuntu
     version: "14.04"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: ubuntu
     version: "18.04"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
   - distribution: ubuntu
     version: "16.04"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
   - distribution: ubuntu
     version: "14.04"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
 
-  # Debian
+#--------------------------------
+#
+# Debian
+#
+#--------------------------------
+  # puppet-agent
   - distribution: debian
     version: "9"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: debian
     version: "8"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: debian
     version: "7"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: debian
     version: "9"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
   - distribution: debian
     version: "8"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
 
-  # Oraclelinux
+  # puppet-server
+  - distribution: debian
+    version: "9"
+    playbook: puppet-agent-5
+  - distribution: debian
+    version: "8"
+    playbook: puppet-agent-5
+  - distribution: debian
+    version: "7"
+    playbook: puppet-agent-5
+  - distribution: debian
+    version: "9"
+    playbook: puppet-agent-6
+  - distribution: debian
+    version: "8"
+    playbook: puppet-agent-6
+
+#--------------------------------
+#
+# Oraclelinux
+#
+#--------------------------------
   - distribution: oraclelinux
     version: "7"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: oraclelinux
     version: "6"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: oraclelinux
     version: "7"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
   - distribution: oraclelinux
     version: "6"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
 
-  # Amazonlinux
+#--------------------------------
+#
+# Amazonlinux
+#
+#--------------------------------
   - distribution: amazonlinux
     version: "2"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: amazonlinux
     version: "1"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: amazonlinux
     version: "2"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
   - distribution: amazonlinux
     version: "1"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
 
-  # Opensuse
+#--------------------------------
+#
+# Opensuse
+#
+#--------------------------------
   - distribution: opensuse
     version: "42.3"
-    repository: puppetlabs_repository
-    puppet_version: "5"
+    playbook: puppet-agent-5
   - distribution: opensuse
     version: "42.3"
-    repository: puppetlabs_repository
-    puppet_version: "6"
+    playbook: puppet-agent-6
 
-  # Archlinux
+#--------------------------------
+#
+# Archlinux
+#
+#--------------------------------
   - distribution: archlinux
     version: "rolling"
-    repository: os_repository
-    puppet_version: "5"
+    playbook: puppet-agent-os-repository
 
 before_install:
   # Build docker container
@@ -147,17 +171,18 @@ script:
   - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/roles/ansible-role-puppet:ro diodonfrost/${distribution}-${version}-ansible:latest > "${container_id}"'
 
   # Check syntax
-  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/test.yml --syntax-check --extra-vars "install_from=${repository} puppet_version=${puppet_version}"'
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/playbooks/${playbook}.yml --syntax-check'
 
   # Run ansible playbook
-  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/test.yml --extra-vars "install_from=${repository} puppet_version=${puppet_version}"'
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/playbooks/${playbook}.yml'
 
   # Test indempotence
   - >
-    sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/test.yml --extra-vars "install_from=${repository} puppet_version=${puppet_version}"
+    sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-puppet/tests/playbooks/${playbook}.yml
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
+
   # Test role
   - 'inspec exec tests/inspec -t docker://$(cat ${container_id})'
 
