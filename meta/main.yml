@@ -2,7 +2,7 @@ galaxy_info:
   role_name: puppet-agent
   author: diodonfrost
   description: Ansible role for manage Puppet-agent
-
+  min_ansible_version: 2.4
   license: license Apache
 
   min_ansible_version: 2.4
