@@ -100,10 +100,6 @@ suites:
     provisioner:
       name: ansible_playbook
       playbook: tests/playbooks/puppet-agent-os-repository.yml
-    verifier:
-      name: inspec
-      inspec_tests:
-        - path: tests/inspec/puppet_agent_spec.rb
     includes:
       - archlinux-rolling
       - freebsd-11
@@ -118,10 +114,6 @@ suites:
     provisioner:
       name: ansible_playbook
       playbook: tests/playbooks/puppet-agent-5.yml
-    verifier:
-      name: inspec
-      inspec_tests:
-        - path: tests/inspec/puppet_agent_spec.rb
     excludes:
       - archlinux-rolling
       - freebsd-11
@@ -134,10 +126,6 @@ suites:
     provisioner:
       name: ansible_playbook
       playbook: tests/playbooks/puppet-agent-6.yml
-    verifier:
-      name: inspec
-      inspec_tests:
-        - path: tests/inspec/puppet_agent_spec.rb
     excludes:
       - archlinux-rolling
       - freebsd-11

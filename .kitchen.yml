@@ -9,13 +9,11 @@ driver:
 provisioner:
   name: ansible_playbook
   hosts: localhost
-  playbook: tests/test.yml
   require_chef_for_busser: false
   require_ruby_for_busser: false
   require_ansible_omnibus: false
   idempotency_test: true
 
-# We use Inspec as testing framework
 verifier:
   name: inspec
   inspec_tests:
@@ -23,14 +21,14 @@ verifier:
 
 platforms:
   # Centos
-  - name: centos-7-ansible
+  - name: centos-7
     driver:
       image: diodonfrost/centos-7-ansible
       run_command: /sbin/init
       platform: centos
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-  - name: centos-6-ansible
+  - name: centos-6
     driver:
       image: diodonfrost/centos-6-ansible
       platform: centos
@@ -39,14 +37,14 @@ platforms:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
   # Fedora
-  - name: fedora-27-ansible
+  - name: fedora-27
     driver:
       image: diodonfrost/fedora-27-ansible
       run_command: /usr/sbin/init
       platform: centos
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-  - name: fedora-26-ansible
+  - name: fedora-26
     driver:
       image: diodonfrost/fedora-26-ansible
       run_command: /usr/sbin/init
@@ -55,12 +53,12 @@ platforms:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
   # Ubuntu
-  - name: ubuntu-18.04-ansible
+  - name: ubuntu-18.04
     driver:
       provision_command: apt-get install -y init
       run_command: /sbin/init
       platform: ubuntu
-  - name: ubuntu-16.04-ansible
+  - name: ubuntu-16.04
     driver:
       provision_command: apt-get install -y init
       run_command: /sbin/init
@@ -70,12 +68,12 @@ platforms:
       platform: ubuntu
 
   # Debian
-  - name: debian-9-ansible
+  - name: debian-9
     driver:
       provision_command: apt-get install -y systemd
       run_command: /bin/systemd
       platform: debian
-  - name: debian-8-ansible
+  - name: debian-8
     driver:
       run_command: /sbin/init
       platform: debian
@@ -85,7 +83,7 @@ platforms:
       platform: debian
 
   # Oraclelinux
-  - name: oraclelinux-7-ansible
+  - name: oraclelinux-7
     driver:
       image: diodonfrost/oraclelinux-7-ansible
       run_command: /usr/sbin/init
@@ -93,41 +91,38 @@ platforms:
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd
-  - name: oraclelinux-6-ansible
+  - name: oraclelinux-6
     driver:
       image: diodonfrost/oraclelinux-6-ansible
       run_command: /sbin/init
       platform: centos
 
   # Amazonlinux
-  - name: amazonlinux-2-ansible
+  - name: amazonlinux-2
     driver:
       image: diodonfrost/amazonlinux-2-ansible
       run_command: /usr/sbin/init
       platform: centos
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-  - name: amazonlinux-1-ansible
+  - name: amazonlinux-1
     driver:
       image: diodonfrost/amazonlinux-1-ansible
       run_command: /sbin/init
       platform: centos
 
-# Define playbook
 suites:
   # Test Puppet 5
-  - name: puppet-5
+  - name: puppet-agent-5
     provisioner:
       name: ansible_playbook
-      extra_vars:
-        puppet_version: 5
+      playbook: tests/playbooks/puppet-agent-5.yml
 
   # Test Puppet 6
-  - name: puppet-6
+  - name: puppet-agent-6
     provisioner:
       name: ansible_playbook
-      extra_vars:
-        puppet_version: 6
-      exclude:
-        - fedora-26-ansible
-        - debian-7-ansible
+      playbook: tests/playbooks/puppet-agent-6.yml
+    exclude:
+      - fedora-26-ansible
+      - debian-7-ansible
