@@ -8,7 +8,7 @@ This role provide a compliance for puppet-agent on your target host.
 ## Requirements
 
 This role was developed using Ansible 2.4 Backwards compatibility is not guaranteed.
-Use `ansible-galaxy install diodonfrost.puppet` to install the role on your system.
+Use `ansible-galaxy install diodonfrost.puppet_agent` to install the role on your system.
 
 Supported platforms:
 
@@ -147,7 +147,7 @@ This is a sample playbook file for deploying the Ansible Galaxy puppet role in a
 - hosts: localhost
   become: true
   roles:
-    - role: diodonfrost.puppet
+    - role: diodonfrost.puppet_agent
 ```
 
 ## Local Testing
