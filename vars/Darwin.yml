@@ -1,7 +1,5 @@
 ---
-# Puppet packages name
 puppet_agent_package: puppetlabs/puppet/puppet-agent
-puppet_server_package: undef
 puppet_agent_service: /Library/LaunchDaemons/com.puppetlabs.puppet.plist
 puppet_agent_configfile: /private/etc/puppetlabs/puppet/puppet.conf
 puppet_agent_configfile_owner: root

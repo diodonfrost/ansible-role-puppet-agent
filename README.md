@@ -3,7 +3,7 @@
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.puppet-660198.svg)](https://galaxy.ansible.com/diodonfrost/puppet)
 [![Build Status](https://travis-ci.org/diodonfrost/ansible-role-puppet.svg?branch=master)](https://travis-ci.org/diodonfrost/ansible-role-puppet)
 
-This role provide a compliance for puppet-agent and puppet-server on your target host.
+This role provide a compliance for puppet-agent on your target host.
 
 ## Requirements
 
@@ -81,9 +81,29 @@ This role has multiple variables. The defaults for all these variables are the f
 ---
 # defaults file for ansible-role-puppet
 
-# Install Puppetlabs repository
-# Default is true
-puppetlabs_repository: true
+# Specify repository origin for Puppet.
+# Options are 'puppetlabs_repository' or 'os_repository'.
+# Default is puppetlabs_repository.
+# OS supported with puppetlabs_repository:
+# Redhat/CentOS 5,6,7
+# Debian 6,7,8,9
+# Ubuntu 18.04, 16.04, 15.04, 14.04, 12.04
+# Opensuse: 42
+# Windows NT: 6, 10
+# osx: 10.10, 10.11, 10.12, 10.13
+# Windows and Mac osx support only puppetlabs_repository
+install_from: puppetlabs_repository
+
+# Specifie puppet version to install
+# Supported values are "5" and "6"
+# Only recent Linux distribution support Puppet 6
+# Default is 5
+puppet_version: "5"
+
+# Specifie if Puppetlabs repo source is enable
+# Supported values are "present" and "absent"
+# Default is absent
+puppetlabs_repo_source: absent
 
 # Install puppet agent with puppetlabs repository
 # Default is true.
@@ -92,13 +112,6 @@ puppet_agent_install: true
 # Setting up puppet_agent
 # Default is true
 puppet_agent_configuration: true
-
-
-################################
-#
-# Puppet-agent configuration
-#
-################################
 
 # The master server to request configurations from.
 # Defaults to puppet
@@ -118,37 +131,7 @@ puppet_agent_runinterval: 30m
 #   - noop = enabled
 #   - report = true
 #   - daemonize = false
-puppet_agent_custom_options: []
-
-# Install puppet server with puppetlabs repository
-# puppet-server is not supported on Windows
-# Default is false.
-# puppet-server is not supported on Windows and OpenBSD
-puppet_server_install: false
-
-# Specify repository origin for Puppet.
-# Options are 'puppetlabs_repository' or 'os_repository'.
-# Default is puppetlabs_repository.
-# OS supported with puppetlabs_repository:
-# Redhat/CentOS 5,6,7
-# Debian 6,7,8,9
-# Ubuntu 18.04, 16.04, 15.04, 14.04, 12.04
-# Opensuse: 42
-# Windows NT: 6, 10
-# osx: 10.10, 10.11, 10.12, 10.13
-# Windows and Mac osx support only puppetlabs_repository
-install_from: puppetlabs_repository
-
-# Specifie puppet version to install
-# Supported values are "5" and "6"
-# Only recent Linux distribution support Puppet 6
-# Default is 5
-puppet_version: 5
-
-# Specifie if Puppetlabs repo source is enable
-# Supported values are "present" and "absent"
-# Default is absent
-puppetlabs_repo_source: absent
+puppet_agent_custom_options:
 ```
 
 ## Dependencies

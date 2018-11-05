@@ -1,51 +1,6 @@
 ---
 # defaults file for ansible-role-puppet
 
-# Install Puppetlabs repository
-# Default is true
-puppetlabs_repository: true
-
-# Install puppet agent with puppetlabs repository
-# Default is true.
-puppet_agent_install: true
-
-# Setting up puppet_agent
-# Default is true
-puppet_agent_configuration: true
-
-
-################################
-#
-# Puppet-agent configuration
-#
-################################
-
-# The master server to request configurations from.
-# Defaults to puppet
-puppet_agent_server: puppet
-
-# The environment to request when contacting the master.
-# Default is production
-puppet_agent_environment: production
-
-# How often to do a Puppet run, when running as a service.
-# Default is 30m
-puppet_agent_runinterval: 30m
-
-# Add advanced Puppet settings.
-# Example:
-# puppet_agent_custom_options:
-#   - noop = enabled
-#   - report = true
-#   - daemonize = false
-puppet_agent_custom_options:
-
-# Install puppet server with puppetlabs repository
-# puppet-server is not supported on Windows
-# Default is false.
-# puppet-server is not supported on Windows and OpenBSD
-puppet_server_install: false
-
 # Specify repository origin for Puppet.
 # Options are 'puppetlabs_repository' or 'os_repository'.
 # Default is puppetlabs_repository.
@@ -69,3 +24,31 @@ puppet_version: "5"
 # Supported values are "present" and "absent"
 # Default is absent
 puppetlabs_repo_source: absent
+
+# Install puppet agent with puppetlabs repository
+# Default is true.
+puppet_agent_install: true
+
+# Setting up puppet_agent
+# Default is true
+puppet_agent_configuration: true
+
+# The master server to request configurations from.
+# Defaults to puppet
+puppet_agent_server: puppet
+
+# The environment to request when contacting the master.
+# Default is production
+puppet_agent_environment: production
+
+# How often to do a Puppet run, when running as a service.
+# Default is 30m
+puppet_agent_runinterval: 30m
+
+# Add advanced Puppet settings.
+# Example:
+# puppet_agent_custom_options:
+#   - noop = enabled
+#   - report = true
+#   - daemonize = false
+puppet_agent_custom_options:

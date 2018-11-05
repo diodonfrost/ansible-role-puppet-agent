@@ -1,7 +1,5 @@
 ---
-# Puppet packages name
 puppet_agent_package: puppet
-puppet_server_package: puppetserver
 puppet_agent_service: puppet
 puppet_agent_configfile: /etc/puppetlabs/puppet/puppet.conf
 puppet_agent_configfile_owner: root
