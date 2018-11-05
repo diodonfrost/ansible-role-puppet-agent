@@ -55,29 +55,34 @@ platforms:
   # Ubuntu
   - name: ubuntu-18.04
     driver:
+      image: diodonfrost/ubuntu-18.04-ansible
       provision_command: apt-get install -y init
       run_command: /sbin/init
       platform: ubuntu
   - name: ubuntu-16.04
     driver:
+      image: diodonfrost/ubuntu-16.04-ansible
       provision_command: apt-get install -y init
       run_command: /sbin/init
       platform: ubuntu
   - name: ubuntu-14.04-ansible
     driver:
+      image: diodonfrost/ubuntu-14.04-ansible
       platform: ubuntu
 
   # Debian
   - name: debian-9
     driver:
+      image: diodonfrost/debian-9-ansible
       provision_command: apt-get install -y systemd
       run_command: /bin/systemd
       platform: debian
   - name: debian-8
     driver:
+      image: diodonfrost/debian-8-ansible
       run_command: /sbin/init
       platform: debian
-  - name: debian-7-ansible
+  - name: debian-7
     driver:
       image: diodonfrost/debian-7-ansible
       platform: debian

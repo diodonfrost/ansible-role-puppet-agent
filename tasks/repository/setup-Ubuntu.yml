@@ -11,7 +11,13 @@
   apt_key:
     url: https://apt.puppetlabs.com/DEB-GPG-KEY-puppet
     state: present
-  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version >= '16.04'
+  when: ansible_distribution_major_version >= '16.04'
+
+- name: Add Puppetlabs apt key for old Debian
+  shell: curl -s https://apt.puppetlabs.com/DEB-GPG-KEY-puppet | apt-key add - > /etc/apt/trusted.gpg.d/puppetlabs.output
+  args:
+    creates: /etc/apt/trusted.gpg.d/puppetlabs.output
+  when: ansible_distribution_major_version < '16.04'
 
 - name: Add Puppetlabs repository for Ubuntu
   apt_repository:
