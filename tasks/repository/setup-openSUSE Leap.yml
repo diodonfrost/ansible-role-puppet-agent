@@ -9,8 +9,8 @@
 - name: Add Puppetlabs repository for OpenSuse
   zypper_repository:
     name: puppet{{ puppet_version }}
-    description: Puppet {{ puppet_version }} Repository sles 15 - $basearch
-    repo: http://yum.puppetlabs.com/puppet{{ puppet_version }}/sles/15/$basearch
+    description: Puppet {{ puppet_version }} Repository sles 12 - $basearch
+    repo: http://yum.puppetlabs.com/puppet{{ puppet_version }}/sles/12/$basearch
     auto_import_keys: yes
     state: present
   changed_when: false
@@ -18,8 +18,8 @@
 - name: Add Puppetlabs source repository for OpenSuse
   zypper_repository:
     name: puppet{{ puppet_version }}
-    description: Puppet {{ puppet_version }} Repository sles 15 - Source
-    repo: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/sles/15/SRPMS
+    description: Puppet {{ puppet_version }} Repository sles 12 - Source
+    repo: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/sles/12/SRPMS
     auto_import_keys: yes
     state: "{{ puppetlabs_repo_source }}"
   changed_when: false
