@@ -23,6 +23,10 @@
       import_tasks: setup-openSUSE Leap.yml
       when: ansible_distribution  == "openSUSE Leap"
 
+    - name: Puppetlabs SLES repos
+      import_tasks: setup-SLES.yml
+      when: ansible_distribution  == "SLES"
+
     - name: Puppetlabs Oraclelinux repos
       import_tasks: setup-CentOS.yml
       when: ansible_distribution  == "OracleLinux"

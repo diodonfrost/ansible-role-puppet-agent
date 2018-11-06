@@ -41,12 +41,15 @@ Supported platforms:
     - 6
 - name: opensuse
   versions:
-    - 12.1
-    - 12.2
-    - 12.3
+    - 13.2
+    - 42.1
+    - 42.2
+    - 42.3
 - name: SLES
   versions:
+    - 11
     - 12
+    - 15
 - name: ArchLinux
   versions:
     - any

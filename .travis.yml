@@ -148,7 +148,19 @@ env:
     version: "42.3"
     playbook: puppet-agent-5
   - distribution: opensuse
+    version: "42.2"
+    playbook: puppet-agent-5
+  - distribution: opensuse
+    version: "13.2"
+    playbook: puppet-agent-5
+  - distribution: opensuse
     version: "42.3"
+    playbook: puppet-agent-6
+  - distribution: opensuse
+    version: "42.2"
+    playbook: puppet-agent-6
+  - distribution: opensuse
+    version: "13.2"
     playbook: puppet-agent-6
 
 #--------------------------------

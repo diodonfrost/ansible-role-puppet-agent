@@ -106,8 +106,8 @@ suites:
       - freebsd-10.4
       - gentoo
       - openbsd-6
-      - solaris-10
-      - solaris-11
+      - openbsd-5.7
+      - openbsd-5.6
 
   # Test with puppetlabs repository and puppet 5
   - name: puppetlabs-agent-5
