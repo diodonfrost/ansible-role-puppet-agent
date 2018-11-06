@@ -116,6 +116,32 @@ platforms:
       run_command: /sbin/init
       platform: centos
 
+  # Opensuse
+  - name: opensuse-42.3
+    driver:
+      image: diodonfrost/opensuse-42.3-ansible
+      run_command: /usr/lib/systemd/systemd
+      platform: opensuse
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd
+  - name: opensuse-42.2
+    driver:
+      image: diodonfrost/opensuse-42.2-ansible
+      run_command: /usr/lib/systemd/systemd
+      platform: opensuse
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd
+  - name: opensuse-13.2
+    driver:
+      image: diodonfrost/opensuse-13.2-ansible
+      run_command: /usr/lib/systemd/systemd
+      platform: opensuse
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd
+
 suites:
   # Test Puppet 5
   - name: puppet-agent-5

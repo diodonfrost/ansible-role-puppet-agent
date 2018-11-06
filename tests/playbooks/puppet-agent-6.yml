@@ -2,7 +2,7 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-role-puppet
+    - ansible-role-puppet-agent
   vars:
     install_from: puppetlabs_repository
     puppet_version: 6

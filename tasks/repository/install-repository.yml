@@ -5,39 +5,40 @@
 
     - name: Puppetlabs Amazonlinux repos
       import_tasks: setup-Amazon.yml
-      when: ansible_distribution  == "Amazon"
+      when: ansible_distribution == "Amazon"
 
     - name: Puppetlabs CentOS repos
       import_tasks: setup-CentOS.yml
-      when: ansible_distribution  == "CentOS"
+      when: ansible_distribution == "CentOS"
 
     - name: Puppetlabs Debian repos
       import_tasks: setup-Debian.yml
-      when: ansible_distribution  == "Debian"
+      when: ansible_distribution == "Debian"
 
     - name: Puppetlabs Fedora repos
       import_tasks: setup-Fedora.yml
-      when: ansible_distribution  == "Fedora"
+      when: ansible_distribution == "Fedora"
 
     - name: Puppetlabs OpenSuse repos
       import_tasks: setup-openSUSE Leap.yml
-      when: ansible_distribution  == "openSUSE Leap"
+      when: ansible_distribution == "openSUSE Leap" or
+            ansible_distribution == "openSUSE"
 
     - name: Puppetlabs SLES repos
       import_tasks: setup-SLES.yml
-      when: ansible_distribution  == "SLES"
+      when: ansible_distribution == "SLES"
 
     - name: Puppetlabs Oraclelinux repos
       import_tasks: setup-CentOS.yml
-      when: ansible_distribution  == "OracleLinux"
+      when: ansible_distribution == "OracleLinux"
 
     - name: Puppetlabs RedHat repos
       import_tasks: setup-CentOS.yml
-      when: ansible_distribution  == "RedHat"
+      when: ansible_distribution == "RedHat"
 
     - name: Puppetlabs Ubuntu repos
       import_tasks: setup-Ubuntu.yml
-      when: ansible_distribution  == "Ubuntu"
+      when: ansible_distribution == "Ubuntu"
 
   when: install_from == "puppetlabs_repository"
 
