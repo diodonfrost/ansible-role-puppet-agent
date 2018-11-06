@@ -57,15 +57,21 @@ platforms:
         - tests/vagrant/vagrant_gentoo_target.rb
 
   # FreeBSD
-  - name: freebsd-11
+  - name: freebsd-11.2
     driver:
-      box: bento/freebsd-11
+      box: bento/freebsd-11.2
       provision: true
       vagrantfiles:
         - tests/vagrant/vagrant_freebsd_target.rb
   - name: freebsd-10.4
     driver:
       box: bento/freebsd-10.4
+      provision: true
+      vagrantfiles:
+        - tests/vagrant/vagrant_freebsd_target.rb
+  - name: freebsd-10.3
+    driver:
+      box: bento/freebsd-10.3
       provision: true
       vagrantfiles:
         - tests/vagrant/vagrant_freebsd_target.rb
@@ -102,12 +108,11 @@ suites:
       playbook: tests/playbooks/puppet-agent-os-repository.yml
     includes:
       - archlinux-rolling
-      - freebsd-11
+      - freebsd-11.2
       - freebsd-10.4
+      - freebsd-10.3
       - gentoo
       - openbsd-6
-      - openbsd-5.7
-      - openbsd-5.6
 
   # Test with puppetlabs repository and puppet 5
   - name: puppetlabs-agent-5
@@ -116,8 +121,9 @@ suites:
       playbook: tests/playbooks/puppet-agent-5.yml
     excludes:
       - archlinux-rolling
-      - freebsd-11
+      - freebsd-11.2
       - freebsd-10.4
+      - freebsd-10.3
       - gentoo
       - openbsd-6
 
@@ -128,7 +134,8 @@ suites:
       playbook: tests/playbooks/puppet-agent-6.yml
     excludes:
       - archlinux-rolling
-      - freebsd-11
+      - freebsd-11.2
       - freebsd-10.4
+      - freebsd-10.3
       - gentoo
       - openbsd-6

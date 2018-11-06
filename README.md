@@ -59,6 +59,7 @@ Supported platforms:
 - name: FreeBSD
   versions:
     - 11.2
+    - 10.4
     - 10.3
 - name: OpenBSD
   versions:
