@@ -1,7 +1,8 @@
 # ansible-role-puppet
 
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.puppet_agent-660198.svg)](https://galaxy.ansible.com/diodonfrost/puppet_agent)
 [![Build Status](https://travis-ci.org/diodonfrost/ansible-role-puppet-agent.svg?branch=master)](https://travis-ci.org/diodonfrost/ansible-role-puppet-agent)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.puppet_agent-660198.svg)](https://galaxy.ansible.com/diodonfrost/puppet_agent)
+
 
 This role provide a compliance for puppet-agent on your target host.
 
@@ -213,10 +214,13 @@ export KITCHEN_YAML=.kitchen-windows.yml
 export KITCHEN_YAML=.kitchen-solaris.yml
 ```
 
-Provision the virtual machines, a Linux machine to run Ansible and Windows machines to apply playbook again:
+Provision the virtual machines, a Linux machine to run Ansible and Windows machines to apply playbook against:
 ```shell
 # deploy machines
 kitchen create
+
+# Apply playbook
+kitchen converge
 ```
 
 Finaly launch inspec tests:
