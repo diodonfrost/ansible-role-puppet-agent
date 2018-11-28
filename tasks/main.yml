@@ -10,4 +10,4 @@
 
 - name: Install puppet-agent
   include_tasks: "agent/agent.yml"
-  when: puppet_agent_install == true
+  when: puppet_agent_install
