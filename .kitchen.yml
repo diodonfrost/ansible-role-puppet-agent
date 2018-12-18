@@ -142,6 +142,16 @@ platforms:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd
 
+  # Archlinux
+  - name: archlinux-rolling
+    driver:
+      image: diodonfrost/opensuse-13.2-ansible
+      run_command: /usr/lib/systemd/systemd
+      platform: opensuse
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd
+
 suites:
   # Test Puppet 5
   - name: puppet-agent-5
