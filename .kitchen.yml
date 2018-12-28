@@ -145,9 +145,9 @@ platforms:
   # Archlinux
   - name: archlinux-rolling
     driver:
-      image: diodonfrost/opensuse-13.2-ansible
+      image: diodonfrost/archlinux-rolling-ansible
       run_command: /usr/lib/systemd/systemd
-      platform: opensuse
+      platform: arch
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd
