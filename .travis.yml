@@ -15,12 +15,6 @@ env:
   - distribution: centos
     version: "6"
     playbook: puppet-agent-5
-  - distribution: centos
-    version: "7"
-    playbook: puppet-agent-6
-  - distribution: centos
-    version: "6"
-    playbook: puppet-agent-6
 
 #--------------------------------
 #
@@ -34,10 +28,6 @@ env:
   - distribution: fedora
     version: "26"
     playbook: puppet-agent-5
-  - distribution: fedora
-    version: "27"
-    playbook: puppet-agent-6
-
 
 #--------------------------------
 #
@@ -54,54 +44,19 @@ env:
   - distribution: ubuntu
     version: "14.04"
     playbook: puppet-agent-5
-  - distribution: ubuntu
-    version: "18.04"
-    playbook: puppet-agent-6
-  - distribution: ubuntu
-    version: "16.04"
-    playbook: puppet-agent-6
-  - distribution: ubuntu
-    version: "14.04"
-    playbook: puppet-agent-6
 
 #--------------------------------
 #
 # Debian
 #
 #--------------------------------
-  # puppet-agent
   - distribution: debian
     version: "9"
     playbook: puppet-agent-5
   - distribution: debian
     version: "8"
     playbook: puppet-agent-5
-  - distribution: debian
-    version: "7"
-    playbook: puppet-agent-5
-  - distribution: debian
-    version: "9"
-    playbook: puppet-agent-6
-  - distribution: debian
-    version: "8"
-    playbook: puppet-agent-6
 
-  # puppet-server
-  - distribution: debian
-    version: "9"
-    playbook: puppet-agent-5
-  - distribution: debian
-    version: "8"
-    playbook: puppet-agent-5
-  - distribution: debian
-    version: "7"
-    playbook: puppet-agent-5
-  - distribution: debian
-    version: "9"
-    playbook: puppet-agent-6
-  - distribution: debian
-    version: "8"
-    playbook: puppet-agent-6
 
 #--------------------------------
 #
@@ -114,12 +69,6 @@ env:
   - distribution: oraclelinux
     version: "6"
     playbook: puppet-agent-5
-  - distribution: oraclelinux
-    version: "7"
-    playbook: puppet-agent-6
-  - distribution: oraclelinux
-    version: "6"
-    playbook: puppet-agent-6
 
 #--------------------------------
 #
@@ -132,12 +81,6 @@ env:
   - distribution: amazonlinux
     version: "1"
     playbook: puppet-agent-5
-  - distribution: amazonlinux
-    version: "2"
-    playbook: puppet-agent-6
-  - distribution: amazonlinux
-    version: "1"
-    playbook: puppet-agent-6
 
 #--------------------------------
 #
@@ -153,15 +96,6 @@ env:
   - distribution: opensuse
     version: "13.2"
     playbook: puppet-agent-5
-  - distribution: opensuse
-    version: "42.3"
-    playbook: puppet-agent-6
-  - distribution: opensuse
-    version: "42.2"
-    playbook: puppet-agent-6
-  - distribution: opensuse
-    version: "13.2"
-    playbook: puppet-agent-6
 
 #--------------------------------
 #
