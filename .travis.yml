@@ -97,14 +97,6 @@ env:
     version: "13.2"
     playbook: puppet-agent-5
 
-#--------------------------------
-#
-# Archlinux
-#
-#--------------------------------
-  - distribution: archlinux
-    version: "rolling"
-    playbook: puppet-agent-os-repository
 
 before_install:
   # Build docker container
