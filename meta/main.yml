@@ -30,10 +30,6 @@ galaxy_info:
         - xenial
         - trusty
         - precise
-    - name: Oracleinux
-      versions:
-        - 7
-        - 6
     - name: Amazon
       versions:
         - Candidate
@@ -62,7 +58,6 @@ galaxy_info:
     - name: Solaris
       versions:
         - 11.0
-        - 10.4
     - name: Windows
       versions:
         - 2016
