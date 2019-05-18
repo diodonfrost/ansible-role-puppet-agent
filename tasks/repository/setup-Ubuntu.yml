@@ -8,7 +8,9 @@
   when: ansible_distribution_major_version >= '16.04'
 
 - name: Add Puppetlabs apt key for old Debian
-  shell: curl -s https://apt.puppetlabs.com/DEB-GPG-KEY-puppet | apt-key add - > /etc/apt/trusted.gpg.d/puppetlabs.output
+  shell: |
+    set -o pipefail
+    curl -s https://apt.puppetlabs.com/DEB-GPG-KEY-puppet | apt-key add - > /etc/apt/trusted.gpg.d/puppetlabs.output
   args:
     creates: /etc/apt/trusted.gpg.d/puppetlabs.output
   when: ansible_distribution_major_version < '16.04'
