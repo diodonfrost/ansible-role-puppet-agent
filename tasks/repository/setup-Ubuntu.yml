@@ -13,6 +13,7 @@
     curl -s https://apt.puppetlabs.com/DEB-GPG-KEY-puppet | apt-key add - > /etc/apt/trusted.gpg.d/puppetlabs.output
   args:
     creates: /etc/apt/trusted.gpg.d/puppetlabs.output
+    executable: /bin/bash
   when: ansible_distribution_major_version < '16.04'
 
 - name: Add Puppetlabs repository for Ubuntu
