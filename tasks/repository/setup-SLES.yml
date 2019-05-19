@@ -1,12 +1,12 @@
 ---
 # add Puppetlabs repository in SLES
 
-- name: Add Puppetlabs rpm key for SLES
+- name: SLES | Add Puppetlabs rpm key
   rpm_key:
     state: present
     key: https://yum.puppet.com/RPM-GPG-KEY-puppet
 
-- name: Add Puppetlabs repository for SLES
+- name: SLES | Add Puppetlabs repository
   zypper_repository:
     name: puppet{{ puppet_version }}
     description: Puppet {{ puppet_version }} Repository sles {{ ansible_distribution_major_version }} - $basearch
@@ -15,7 +15,7 @@
     state: present
   changed_when: false
 
-- name: Add Puppetlabs source repository for OpenSuse
+- name: SLES | Add Puppetlabs source repository
   zypper_repository:
     name: puppet{{ puppet_version }}
     description: Puppet {{ puppet_version }} Repository sles {{ ansible_distribution_major_version }} - Source

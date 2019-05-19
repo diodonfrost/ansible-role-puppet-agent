@@ -1,12 +1,12 @@
 ---
 # Install puppet-agent on OpenBSD
 
-- name: Install puppet-agent on Solaris
+- name: Solaris | Install puppet-agent
   package:
     name: "{{ puppet_agent_package }}"
     state: present
 
-- name: Puppet-agent service on Solaris
+- name: Solaris | Puppet-agent service
   service:
     name: "{{ puppet_agent_service }}"
     state: started

@@ -1,29 +1,29 @@
 ---
 # add Puppetlabs repository in Debian
 
-- name: Add Puppetlabs apt key in Debian
+- name: Debian | Add Puppetlabs apt key
   apt_key:
     url: https://apt.puppetlabs.com/DEB-GPG-KEY-puppet
     state: present
   when: ansible_distribution == "Debian" and ansible_distribution_major_version >= '8'
 
-- name: Add Puppetlabs apt key for old Debian
+- name: old Debian | Add Puppetlabs apt key
   shell: curl -s https://apt.puppetlabs.com/DEB-GPG-KEY-puppet | apt-key add - > /etc/apt/trusted.gpg.d/puppetlabs.output
   args:
     creates: /etc/apt/trusted.gpg.d/puppetlabs.output
   when: ansible_distribution == "Debian" and ansible_distribution_major_version < '8'
 
-- name: Add Puppetlabs repository for Debian
+- name: Debian | Add Puppetlabs repository
   apt_repository:
     repo: deb http://apt.puppetlabs.com {{ ansible_distribution_release }} puppet{{ puppet_version }}
     state: present
 
-- name: Add Puppetlabs source repository for Debian
+- name: Debian | Add Puppetlabs source repository
   apt_repository:
     repo: deb-src http://apt.puppetlabs.com {{ ansible_distribution_release }} puppet{{ puppet_version }}
     state: "{{ puppetlabs_repo_source }}"
 
-- name: Update apt cache
+- name: Debian | Update apt cache
   apt:
     update_cache: yes
   changed_when: false

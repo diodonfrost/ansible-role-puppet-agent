@@ -56,7 +56,7 @@ Supported platforms:
     - any
 - name: Gentoo
   versions:
-    - stage3
+    - any
 - name: FreeBSD
   versions:
     - 11.2

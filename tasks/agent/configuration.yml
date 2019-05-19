@@ -1,7 +1,7 @@
 ---
 # tasks file for manage puppet-agent
 
-- name: Puppet-agent config file for *nix system
+- name: Linux/Unix | Puppet-agent config file for *nix system
   template:
     src: puppet.conf.j2
     dest: "{{ puppet_agent_configfile }}"
@@ -11,7 +11,7 @@
   notify: "puppet-agent restart {{ ansible_system }}"
   when: ansible_system != "Win32NT"
 
-- name: Puppet-agent config file for Windows system
+- name: Windows | Puppet-agent config file for Windows system
   win_template:
     src: puppet.conf.j2
     dest: "{{ puppet_agent_configfile }}"

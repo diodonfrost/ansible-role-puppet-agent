@@ -1,19 +1,19 @@
 ---
 # Install puppet-agent on FreeBSD
 
-- name: Install puppet-agent on FreeBSD
+- name: FreeBSD | Install puppet-agent
   package:
     name: "{{ puppet_agent_package }}"
     state: present
 
 
-- name: setup puppet-agent service with rc.d for FreeBSD
+- name: FreeBSD | Setup puppet-agent service with rc.d
   blockinfile:
     path: /etc/rc.conf
     block: |
       puppet_enable="YES"
 
-- name: Puppet-agent service on FreeBSD
+- name: FreeBSD | Puppet-agent service
   service:
     name: "{{ puppet_agent_service }}"
     state: started

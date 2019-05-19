@@ -3,40 +3,40 @@
 - name: "(Install: Centos/Debian/Fedora/Opensuse/RedHat/Ubuntu) Install Puppetlabs repository"
   block:
 
-    - name: Puppetlabs Amazonlinux repos
+    - name: Amazonlinux | Puppetlabs
       import_tasks: setup-Amazon.yml
       when: ansible_distribution == "Amazon"
 
-    - name: Puppetlabs CentOS repos
+    - name: CentOS | Puppetlabs repos
       import_tasks: setup-CentOS.yml
       when: ansible_distribution == "CentOS"
 
-    - name: Puppetlabs Debian repos
+    - name: Debian | Puppetlabs repos
       import_tasks: setup-Debian.yml
       when: ansible_distribution == "Debian"
 
-    - name: Puppetlabs Fedora repos
+    - name: Fedora | Puppetlabs repos
       import_tasks: setup-Fedora.yml
       when: ansible_distribution == "Fedora"
 
-    - name: Puppetlabs OpenSuse repos
+    - name: Opensuse | Puppetlabs repos
       import_tasks: setup-openSUSE Leap.yml
       when: ansible_distribution == "openSUSE Leap" or
             ansible_distribution == "openSUSE"
 
-    - name: Puppetlabs SLES repos
+    - name: SLES | Puppetlabs repos
       import_tasks: setup-SLES.yml
       when: ansible_distribution == "SLES"
 
-    - name: Puppetlabs Oraclelinux repos
+    - name: Oracleinux | Puppetlabs repos
       import_tasks: setup-CentOS.yml
       when: ansible_distribution == "OracleLinux"
 
-    - name: Puppetlabs RedHat repos
+    - name: RedHat | Puppetlabs repos
       import_tasks: setup-CentOS.yml
       when: ansible_distribution == "RedHat"
 
-    - name: Puppetlabs Ubuntu repos
+    - name: Ubuntu | Puppetlabs repos
       import_tasks: setup-Ubuntu.yml
       when: ansible_distribution == "Ubuntu"
 
@@ -45,18 +45,18 @@
 - name: "(Install: Centos/Debian/Fedora/Opensuse/RedHat/Ubuntu/bsd) Install Puppet with os repository"
   block:
 
-    - name: Update apt cache
+    - name: Debian | Update apt cache
       apt:
         update_cache: yes
       changed_when: false
       when: ansible_os_family == "Debian"
 
-    - name: Update emerge cache
+    - name: Gentoo | Update emerge cache
       command: emerge-webrsync
       changed_when: false
       when: ansible_os_family == "Gentoo"
 
-    - name: Puppet-agent install from os repository
+    - name: Generic | Puppet-agent install from os repository
       package:
         name: "{{ puppet_agent_package }}"
         state: present
