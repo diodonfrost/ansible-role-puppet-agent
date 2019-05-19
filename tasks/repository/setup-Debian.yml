@@ -7,8 +7,10 @@
     state: present
   when: ansible_distribution == "Debian" and ansible_distribution_major_version >= '8'
 
-- name: old Debian | Add Puppetlabs apt key
-  shell: curl -s https://apt.puppetlabs.com/DEB-GPG-KEY-puppet | apt-key add - > /etc/apt/trusted.gpg.d/puppetlabs.output
+- name: old Debian | Add Puppetlabs apt key for old Debian
+  shell: |
+    set -o pipefail
+    curl -s https://apt.puppetlabs.com/DEB-GPG-KEY-puppet | apt-key add - > /etc/apt/trusted.gpg.d/puppetlabs.output
   args:
     creates: /etc/apt/trusted.gpg.d/puppetlabs.output
   when: ansible_distribution == "Debian" and ansible_distribution_major_version < '8'

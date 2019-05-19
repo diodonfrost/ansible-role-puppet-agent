@@ -18,17 +18,17 @@
       get_url:
         url: https://downloads.puppetlabs.com/mac/puppet{{ puppet_version }}/{{ ansible_distribution_major_version }}.{{ ansible_distribution_version.split('.')[-2] }}/x86_64/puppet-agent-latest.dmg
         dest: ./tmp/puppet-agent-latest.dmg
-      when: puppet_version == "5"
+      when: puppet_version == 5
 
     - name: Darwin | Download puppet-agent package
       get_url:
         url: https://downloads.puppetlabs.com/mac/puppet{{ puppet_version }}/{{ ansible_distribution_major_version }}.{{ ansible_distribution_version.split('.')[-2] }}/x86_64/puppet-latest.dmg
         dest: ./tmp/puppet-agent-latest.dmg
-      when: puppet_version == "6"
+      when: puppet_version == 6
 
     # Don't know why it goes into error but it still works
     - name: Darwin | Mount dmg
-      shell: hdiutil attach ./tmp/puppet-agent-latest.dmg -nobrowse -mountpoint ./tmp/puppet-agent-latest
+      command: hdiutil attach ./tmp/puppet-agent-latest.dmg -nobrowse -mountpoint ./tmp/puppet-agent-latest
       ignore_errors: yes
 
     - name: Darwin | Install puppet-agent
@@ -37,7 +37,7 @@
     - name: Darwin | Unmount and remove temporary directory
       shell: hdiutil detach ./tmp/puppet-agent-latest/ && rm -R ./tmp/
 
-  when: puppet_package.stat.exists == False
+  when: not puppet_package.stat.exists
 
 - name: Darwin | Check if puppet service is running
   shell: launchctl list | grep puppet
@@ -45,6 +45,6 @@
   changed_when: false
   ignore_errors: yes
 
-- name: Darwin | Puppet-agent service
-  shell: launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppet.plist
+- name: Darwin | Puppet-agent service on osx
+  command: launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppet.plist
   when: puppet_service.rc != 0

@@ -37,6 +37,20 @@ platforms:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
   # Fedora
+  - name: fedora-29
+    driver:
+      image: diodonfrost/fedora-27-ansible
+      run_command: /usr/sbin/init
+      platform: centos
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: fedora-28
+    driver:
+      image: diodonfrost/fedora-27-ansible
+      run_command: /usr/sbin/init
+      platform: centos
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
   - name: fedora-27
     driver:
       image: diodonfrost/fedora-27-ansible

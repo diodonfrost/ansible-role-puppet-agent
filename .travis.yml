@@ -8,7 +8,6 @@ env:
 # CentOS
 #
 #-----------------------------------------------
-  # puppet-agent
   - distribution: centos
     version: "7"
     playbook: puppet-agent-5
@@ -21,7 +20,12 @@ env:
 # Fedora
 #
 #--------------------------------
-  # puppet-agent
+  - distribution: fedora
+    version: "29"
+    playbook: puppet-agent-5
+  - distribution: fedora
+    version: "28"
+    playbook: puppet-agent-5
   - distribution: fedora
     version: "27"
     playbook: puppet-agent-5
@@ -34,7 +38,6 @@ env:
 # Ubuntu
 #
 #--------------------------------
-  # puppet-agent
   - distribution: ubuntu
     version: "18.04"
     playbook: puppet-agent-5
