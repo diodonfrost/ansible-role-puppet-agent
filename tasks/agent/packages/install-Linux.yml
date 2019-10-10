@@ -20,7 +20,7 @@
 
 - name: Linux | Install puppet-agent from os repository
   package:
-    name: "{{ puppet_agent_package }}"
+    name: "{{ puppet_agent_package_os }}"
     state: present
   when: install_from == "os_repository"
 

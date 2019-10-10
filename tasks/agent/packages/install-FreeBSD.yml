@@ -3,9 +3,8 @@
 
 - name: FreeBSD | Install puppet-agent
   package:
-    name: "{{ puppet_agent_package }}"
+    name: "{{ puppet_agent_package_os }}"
     state: present
-
 
 - name: FreeBSD | Setup puppet-agent service with rc.d
   blockinfile:

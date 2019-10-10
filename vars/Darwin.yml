@@ -1,5 +1,6 @@
 ---
-puppet_agent_package: puppetlabs/puppet/puppet-agent
+puppet_agent_package_os: puppetlabs/puppet/puppet-agent
+puppet_agent_package_official: puppet-agent-latest
 puppet_agent_service: /Library/LaunchDaemons/com.puppetlabs.puppet.plist
 puppet_agent_configfile: /private/etc/puppetlabs/puppet/puppet.conf
 puppet_agent_configfile_owner: root

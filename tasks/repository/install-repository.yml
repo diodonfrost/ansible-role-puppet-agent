@@ -58,7 +58,7 @@
 
     - name: Generic | Puppet-agent install from os repository
       package:
-        name: "{{ puppet_agent_package }}"
+        name: "{{ puppet_agent_package_os }}"
         state: present
 
   when: install_from == "os_repository"

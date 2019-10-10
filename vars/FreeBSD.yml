@@ -1,5 +1,5 @@
 ---
-puppet_agent_package: sysutils/puppet6
+puppet_agent_package_os: sysutils/puppet6
 puppet_agent_service: puppet
 puppet_agent_configfile: /usr/local/etc/puppet/puppet.conf
 puppet_agent_configfile_owner: root
