@@ -54,6 +54,9 @@ env:
 #
 #--------------------------------
   - distribution: debian
+    version: "10"
+    playbook: puppet-agent-5
+  - distribution: debian
     version: "9"
     playbook: puppet-agent-5
   - distribution: debian
