@@ -16,11 +16,13 @@ Supported platforms:
 ```yaml
 - name: EL
   versions:
+    - 8
     - 7
     - 6
     - 5
 - name: Fedora
   versions:
+    - 30
     - 29
     - 28
     - 27
@@ -40,6 +42,7 @@ Supported platforms:
     - precise
 - name: OracleLinux
   versions:
+    - 8
     - 7
     - 6
 - name: opensuse
