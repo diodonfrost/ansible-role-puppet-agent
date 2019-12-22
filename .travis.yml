@@ -23,8 +23,6 @@ env:
 # Fedora
 #
 #--------------------------------
-  - distribution: fedora
-    version: "31"
     playbook: puppet-agent-5
   - distribution: fedora
     version: "30"
