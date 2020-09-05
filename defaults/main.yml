@@ -51,4 +51,4 @@ puppet_agent_runinterval: 30m
 #   - noop = enabled
 #   - report = true
 #   - daemonize = false
-puppet_agent_custom_options:
+puppet_agent_custom_options: []
