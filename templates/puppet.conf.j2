@@ -13,4 +13,6 @@ runinterval = {{ puppet_agent_runinterval }}
 manage_internal_file_permissions = false
 {% endif %}
 
-{{ puppet_agent_custom_options }}
+{% for custom_option in (puppet_agent_custom_options | from_yaml) %}
+{{ custom_option }}
+{% endfor %}
