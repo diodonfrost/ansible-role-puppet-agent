@@ -7,8 +7,14 @@
     register: puppet_service_result
 
   - name: Linux | Puppet command should be functionnal
+    command: /opt/puppetlabs/bin/puppet --version
+    register: puppet_command_result
+    when: puppet_agent_package_official is defined
+
+  - name: Linux | Puppet command should be functionnal
     command: puppet --version
     register: puppet_command_result
+    when: puppet_agent_package_os is defined
 
   - name: Linux | Verify commands outputs
     assert:
