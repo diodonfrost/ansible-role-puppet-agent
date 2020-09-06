@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  tasks:
+    - name: "Include ansible-role-puppet-agent"
+      include_role:
+        name: "ansible-role-puppet-agent"
