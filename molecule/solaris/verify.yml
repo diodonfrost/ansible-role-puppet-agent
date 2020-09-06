@@ -1,0 +1,18 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+  - name: Solaris | Puppet service should be functionnal
+    command: svcs -l application/puppet:agent
+    register: puppet_service_result
+
+  - name: Solaris | Puppet command should be functionnal
+    command: puppet --version
+    register: puppet_command_result
+
+  - name: Solaris | Verify commands outputs
+    assert:
+      that:
+        - puppet_service_result.rc == 0
+        - puppet_command_result.rc == 0
+      success_msg: "All tests passed"

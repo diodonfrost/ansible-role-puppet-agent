@@ -1,6 +1,6 @@
 ---
 puppet_agent_package_os: puppet
 puppet_agent_service: puppet:agent
-puppet_agent_configfile: /etc/puppet/puppet.conf
+puppet_agent_configfile: /etc/puppetlabs/puppet/puppet.conf
 puppet_agent_configfile_owner: root
 puppet_agent_configfile_group: root
