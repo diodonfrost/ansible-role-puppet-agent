@@ -1,0 +1,57 @@
+name: molecule
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 18 * * sun'
+
+jobs:
+  build:
+    name: ${{ matrix.distribution }} puppet ${{ matrix.puppet_version }}
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        distribution:
+          - centos-8
+          - centos-7
+          - centos-6
+          - fedora-30
+          - fedora-29
+          - fedora-28
+          - fedora-27
+          - fedora-26
+          - ubuntu-18.04
+          - ubuntu-16.04
+          - ubuntu-14.04
+          - debian-10
+          - debian-9
+          - debian-8
+          - oraclelinux-8
+          - oraclelinux-7
+          - oraclelinux-6
+          - amazonlinux-2
+          - amazonlinux-1
+          - opensuse-42.3
+          - opensuse-13.2
+        puppet_version:
+          - 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install Molecule
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Test Ansible role
+        run: |
+          distribution=${{ matrix.distribution }} puppet_version=${{ matrix.puppet_version }} molecule test
