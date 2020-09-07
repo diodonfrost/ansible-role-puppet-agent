@@ -1,11 +1,14 @@
 ---
 # add Puppetlabs repository in Amazonlinux
 
+- set_fact:
+    el_version: "{{ (ansible_service_mgr == 'systemd') | ternary('7', '6') }}"
+
 - name: Amazonlinux | Add Puppetlabs repository
   yum_repository:
     name: puppet{{ puppet_version }}
     description: "Puppet {{ puppet_version }} Repository el {{ ansible_distribution_major_version }} - $basearch"
-    baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}/el/{{ ansible_distribution_major_version|int + 5 }}/$basearch
+    baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}/el/{{ el_version }}/$basearch
     gpgcheck: true
     gpgkey: https://yum.puppet.com/RPM-GPG-KEY-puppet
     enabled: true
@@ -15,7 +18,7 @@
   yum_repository:
     name: puppet{{ puppet_version }}-source
     description: "Puppet {{ puppet_version }} Repository el {{ ansible_distribution_major_version }} - Source"
-    baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/el/{{ ansible_distribution_major_version|int + 5 }}/SRPMS
+    baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/el/{{ el_version }}/SRPMS
     gpgcheck: true
     gpgkey: https://yum.puppet.com/RPM-GPG-KEY-puppet
     enabled: true
