@@ -8,17 +8,19 @@
 
   - name: Linux | Puppet command should be functionnal
     command: /opt/puppetlabs/bin/puppet --version
-    register: puppet_command_result
-    when: puppet_agent_package_official is defined
+    ignore_errors: True
+    failed_when: false
+    register: puppet_os_binary_result
 
   - name: Linux | Puppet command should be functionnal
     command: puppet --version
-    register: puppet_command_result
-    when: puppet_agent_package_os is defined
+    ignore_errors: True
+    failed_when: false
+    register: puppetlabs_binary_result
 
   - name: Linux | Verify commands outputs
     assert:
       that:
         - puppet_service_result.rc == 0
-        - puppet_command_result.rc == 0
+        - puppet_os_binary_result.rc == 0 or puppetlabs_binary_result.rc == 0
       success_msg: "All tests passed"
