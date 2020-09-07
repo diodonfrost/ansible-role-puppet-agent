@@ -1,5 +1,0 @@
----
-- name: ansible-role-puppet
-  hosts: windows-machines
-  roles:
-    - ansible-role-puppet

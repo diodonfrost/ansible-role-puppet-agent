@@ -1,7 +1,0 @@
----
-- hosts: localhost
-  remote_user: root
-  roles:
-    - ansible-role-puppet-agent
-  vars:
-    install_from: os_repository
