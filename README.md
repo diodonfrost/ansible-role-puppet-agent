@@ -162,48 +162,55 @@ This is a sample playbook file for deploying the Ansible Galaxy puppet role in a
 
 ## Local Testing
 
-The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system.
+This project uses [Molecule](http://molecule.readthedocs.io/) to aid in the
+development and testing.
 
-You can also use vagrant and Virtualbox with vagrant to run tests locally. You will have to install Virtualbox and Vagrant on your system. For all our tests we use test-kitchen.
+To develop or test you'll need to have installed the following:
 
-Next install test-kitchen:
-
-```shell
-# Install dependencies
-gem install bundler
-bundle install
-```
+* Linux (e.g. [Ubuntu](http://www.ubuntu.com/))
+* [Docker](https://www.docker.com/)
+* [Python](https://www.python.org/) (including python-pip)
+* [Ansible](https://www.ansible.com/)
+* [Molecule](http://molecule.readthedocs.io/)
+* [Virtualbox](https://www.virtualbox.org/) (windows/bsd test only)
+* [Vagrant](https://www.vagrantup.com/downloads.html) (windows/bsd test only)
 
 ### Testing with Docker
 
 ```shell
-# List all tests with kitchen
-kitchen list
+# Test ansible role with centos 8
+molecule test
 
-# fast test on one machine
-kitchen test mariadb-103-centos-7
+# Test ansible role with ubuntu 20.04
+image=ansible-ubuntu:20.04 molecule test
 
-# test on all machines
-kitchen test
+# Test ansible role with alpine latest
+image=ansible-alpine:latest molecule test
 
-# for development, create environment
-kitchen create default-centos-7
+# Create centos 7 instance
+image=ansible-centos:7 molecule create
 
-# Apply ansible playbook
-kitchen converge default-centos-7
+# Apply role on centos 7 instance
+image=ansible-centos:7 molecule converge
 
-# Apply inspec tests
-kitchen verify default-centos-7
+# Launch tests on centos 7 instance
+image=ansible-centos:7 molecule verify
 ```
 
-### Testing with Virtualbox
+### Testing with Vagrant and Virtualbox
 
 ```shell
-# Specify kitchen file on Linux
-export KITCHEN_YAML=.kitchen-vagrant.yml
+# Test ansible role with FreeBSD
+molecule test -s freebsd
 
-# fast test on one machine
-kitchen test os-packaging-freebsd-11
+# Test ansible role with OpenBSD
+molecule test -s openbsd
+
+# Test ansible role with Solaris
+molecule test -s solaris
+
+# Test ansible role with Windows
+molecule test -s windows
 ```
 
 ### Testing Windows or Solaris with Virtualbox
