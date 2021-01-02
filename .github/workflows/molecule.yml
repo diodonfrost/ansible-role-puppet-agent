@@ -49,8 +49,10 @@ jobs:
       - name: Install Molecule
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install ansible ansible-lint molecule-docker docker
 
       - name: Test Ansible role
-        run: |
-          image=${{ matrix.image }} puppet_version=${{ matrix.puppet_version }} molecule test
+        run: molecule test
+        env:
+          image: ${{ matrix.image }}
+          puppet_version: ${{ matrix.puppet_version }}
