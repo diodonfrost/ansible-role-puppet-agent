@@ -33,7 +33,7 @@ jobs:
           - ansible-oraclelinux:6
           - ansible-amazonlinux:2
           - ansible-amazonlinux:1
-          - ansible-opensuse:42.3
+          - ansible-opensuse:leap
         puppet_version:
           - 5
 
