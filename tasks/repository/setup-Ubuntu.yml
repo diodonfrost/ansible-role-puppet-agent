@@ -3,7 +3,7 @@
 
 - name: Ubuntu | Add Puppetlabs apt key
   apt_key:
-    url: https://apt.puppetlabs.com/DEB-GPG-KEY-puppet
+    data: "{{ lookup('url', 'https://apt.puppetlabs.com/DEB-GPG-KEY-puppet', split_lines=False) }}"
     state: present
   when: ansible_distribution_major_version >= '16.04'
 
