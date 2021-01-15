@@ -4,22 +4,14 @@
 - name: Suse | Add Puppetlabs rpm key
   rpm_key:
     state: present
-    key: https://yum.puppet.com/RPM-GPG-KEY-puppet
+    key: "{{ item }}"
+  loop:
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs'
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-reductive'
 
 - name: Suse | Add Puppetlabs repository
-  zypper_repository:
-    name: puppet{{ puppet_version }}
-    description: Puppet {{ puppet_version }} Repository sles 12 - $basearch
-    repo: http://yum.puppetlabs.com/puppet{{ puppet_version }}/sles/12/$basearch
-    auto_import_keys: yes
+  zypper:
+    name: "https://yum.puppet.com/puppet{{ puppet_version }}-release-sles-{{ ansible_distribution_major_version }}.noarch.rpm"
     state: present
-  changed_when: false
-
-- name: Suse | Add Puppetlabs source repository
-  zypper_repository:
-    name: puppet{{ puppet_version }}
-    description: Puppet {{ puppet_version }} Repository sles 12 - Source
-    repo: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/sles/12/SRPMS
-    auto_import_keys: yes
-    state: "{{ puppetlabs_repo_source }}"
-  changed_when: false
