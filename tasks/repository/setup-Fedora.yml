@@ -1,5 +1,14 @@
 ---
 # add Puppetlabs repository in Fedora
+- name: Fedora | Add Puppetlabs rpm key
+  rpm_key:
+    state: present
+    key: "{{ item }}"
+  loop:
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs'
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-reductive'
 
 - name: Fedora | Add Puppetlabs repository
   yum_repository:
