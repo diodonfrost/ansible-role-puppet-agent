@@ -3,17 +3,27 @@
 
 - name: Ubuntu | Add Puppetlabs apt key
   apt_key:
-    data: "{{ lookup('url', 'https://apt.puppetlabs.com/DEB-GPG-KEY-puppet', split_lines=False) }}"
+    data: "{{ lookup('url', item, split_lines=False) }}"
     state: present
+  loop:
+    - 'https://apt.puppetlabs.com/DEB-GPG-KEY-puppet'
+    - 'https://apt.puppetlabs.com/DEB-GPG-KEY-puppet-20250406'
+    - 'https://apt.puppetlabs.com/DEB-GPG-KEY-puppetlabs'
+    - 'https://apt.puppetlabs.com/DEB-GPG-KEY-reductive'
   when: ansible_distribution_major_version >= '16.04'
 
 - name: old Ubuntu | Add Puppetlabs apt key for old Debian
   shell: |
     set -o pipefail
-    curl -s https://apt.puppetlabs.com/DEB-GPG-KEY-puppet | apt-key add - > /etc/apt/trusted.gpg.d/puppetlabs.output
+    curl -s https://apt.puppetlabs.com/{{ item }} | apt-key add - > /etc/apt/trusted.gpg.d/{{ item }}.output
   args:
-    creates: /etc/apt/trusted.gpg.d/puppetlabs.output
+    creates: /etc/apt/trusted.gpg.d/{{ item }}.output
     executable: /bin/bash
+  loop:
+    - 'puppet'
+    - 'puppet-20250406'
+    - 'puppetlabs'
+    - 'reductive'
   when: ansible_distribution_major_version < '16.04'
 
 - name: Ubuntu | Add Puppetlabs repository for Ubuntu
