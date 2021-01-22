@@ -10,7 +10,9 @@
     description: "Puppet {{ puppet_version }} Repository el {{ ansible_distribution_major_version }} - $basearch"
     baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}/el/{{ el_version }}/$basearch
     gpgcheck: true
-    gpgkey: https://yum.puppet.com/RPM-GPG-KEY-puppet
+    gpgkey:
+      - 'https://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
+      - 'https://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
     enabled: true
     state: present
 
@@ -20,6 +22,8 @@
     description: "Puppet {{ puppet_version }} Repository el {{ ansible_distribution_major_version }} - Source"
     baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/el/{{ el_version }}/SRPMS
     gpgcheck: true
-    gpgkey: https://yum.puppet.com/RPM-GPG-KEY-puppet
+    gpgkey:
+      - 'https://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
+      - 'https://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
     enabled: true
     state: "{{ puppetlabs_repo_source }}"
