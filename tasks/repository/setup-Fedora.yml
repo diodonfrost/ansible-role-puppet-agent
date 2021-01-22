@@ -17,8 +17,8 @@
     baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}/fedora/{{ ansible_distribution_major_version }}/$basearch
     gpgcheck: true
     gpgkey:
-      - 'https://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
-      - 'https://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
+      - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
+      - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
     enabled: true
     state: present
 
@@ -29,7 +29,7 @@
     baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/fedora/{{ ansible_distribution_major_version }}/SRPMS
     gpgcheck: true
     gpgkey:
-      - 'https://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
-      - 'https://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
+      - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
+      - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
     enabled: true
     state: "{{ puppetlabs_repo_source }}"
