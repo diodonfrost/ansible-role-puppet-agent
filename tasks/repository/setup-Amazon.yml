@@ -4,13 +4,25 @@
 - set_fact:
     el_version: "{{ (ansible_service_mgr == 'systemd') | ternary('7', '6') }}"
 
+- name: Amazonlinux | Add Puppetlabs rpm key
+  rpm_key:
+    state: present
+    key: "{{ item }}"
+  loop:
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs'
+    - 'http://yum.puppetlabs.com/RPM-GPG-KEY-reductive'
+
 - name: Amazonlinux | Add Puppetlabs repository
   yum_repository:
     name: puppet{{ puppet_version }}
     description: "Puppet {{ puppet_version }} Repository el {{ ansible_distribution_major_version }} - $basearch"
     baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}/el/{{ el_version }}/$basearch
     gpgcheck: true
-    gpgkey: https://yum.puppet.com/RPM-GPG-KEY-puppet
+    gpgkey:
+      - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
+      - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
     enabled: true
     state: present
 
@@ -20,6 +32,8 @@
     description: "Puppet {{ puppet_version }} Repository el {{ ansible_distribution_major_version }} - Source"
     baseurl: http://yum.puppetlabs.com/puppet{{ puppet_version }}-nightly/el/{{ el_version }}/SRPMS
     gpgcheck: true
-    gpgkey: https://yum.puppet.com/RPM-GPG-KEY-puppet
+    gpgkey:
+      - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet'
+      - 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppet-20250406'
     enabled: true
     state: "{{ puppetlabs_repo_source }}"
