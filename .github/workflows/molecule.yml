@@ -25,6 +25,7 @@ jobs:
           - ubuntu:18.04
           - ubuntu:16.04
           - ubuntu:14.04
+          - debian:11
           - debian:10
           - debian:9
           - debian:8
@@ -35,7 +36,7 @@ jobs:
           - amazonlinux:1
           - opensuse:leap
         puppet_version:
-          - 5
+          - 7
 
     steps:
       - name: Checkout repository
