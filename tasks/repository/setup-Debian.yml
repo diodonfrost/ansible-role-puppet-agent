@@ -6,10 +6,7 @@
     data: "{{ lookup('url', item, split_lines=False) }}"
     state: present
   loop:
-    - 'https://apt.puppetlabs.com/DEB-GPG-KEY-puppet'
     - 'https://apt.puppetlabs.com/DEB-GPG-KEY-puppet-20250406'
-    - 'https://apt.puppetlabs.com/DEB-GPG-KEY-puppetlabs'
-    - 'https://apt.puppetlabs.com/DEB-GPG-KEY-reductive'
 
 - name: Debian | Add Puppetlabs repository
   apt_repository:
